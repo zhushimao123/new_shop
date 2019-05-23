@@ -2,7 +2,7 @@
 <html lang="zxx">
 <head>
     <meta charset="UTF-8">
-    <title>bej4_shop</title>
+    <title>Mstore - Online Shop Mobile Template</title>
     <meta name="viewport" content="width=device-width, initial-scale=1  maximum-scale=1 user-scalable=no">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -28,7 +28,7 @@
 <div class="navbar-top">
     <!-- site brand	 -->
     <div class="site-brand">
-        <a href="index.html"><h1>Mstore</h1></a>
+        <a href="/"><h1>Mstore</h1></a>
     </div>
     <!-- end site brand	 -->
     <div class="side-nav-panel-right">
@@ -46,11 +46,10 @@
         </li>
         <li><a href="setting.html"><i class="fa fa-cog"></i>Settings</a></li>
         <li><a href="about-us.html"><i class="fa fa-user"></i>About Us</a></li>
-        <li><a href="/contact"><i class="fa fa-envelope-o"></i>Contact Us</a></li>
+        <li><a href="contact.html"><i class="fa fa-envelope-o"></i>Contact Us</a></li>
         <li><a href="login.html"><i class="fa fa-sign-in"></i>Login</a></li>
-        <li><a href="/register"><i class="fa fa-user-plus"></i>Register</a></li>
+        <li><a href="register.html"><i class="fa fa-user-plus"></i>Register</a></li>
     </ul>
-    sdsdsds
 </div>
 <!-- end side nav right-->
 
@@ -58,7 +57,7 @@
 <div class="navbar-bottom">
     <div class="row">
         <div class="col s2">
-            <a href="index.html"><i class="fa fa-home"></i></a>
+            <a href="/"><i class="fa fa-home"></i></a>
         </div>
         <div class="col s2">
             <a href="wishlist.html"><i class="fa fa-heart"></i></a>
@@ -70,7 +69,7 @@
             </div>
         </div>
         <div class="col s2">
-            <a href="/contact"><i class="fa fa-envelope-o"></i></a>
+            <a href="contact"><i class="fa fa-envelope-o"></i></a>
         </div>
         <div class="col s2">
             <a href="#animatedModal2" id="nav-menu"><i class="fa fa-bars"></i></a>
@@ -98,7 +97,7 @@
                     </a>
                 </div>
                 <div class="col s4">
-                    <a href="/product" class="button-link">
+                    <a href="product-list.html" class="button-link">
                         <div class="menu-link">
                             <div class="icon">
                                 <i class="fa fa-bars"></i>
@@ -363,161 +362,39 @@
 </div>
 <!-- end cart menu -->
 
-<!-- slider -->
-<div class="slider">
 
-    <ul class="slides">
-        <li>
-            <img src="img/下载.jpg" alt="">
-            <div class="caption slider-content  center-align">
-                <h2>我们</h2>
-                <h4>听组长的话</h4>
-                <a href="" class="btn button-default">SHOP</a>
-            </div>
-        </li>
-        <li>
-            <img src="img/ash.jpg" alt=''>
-            <div class="caption slider-content  center-align">
-                <h2>你们 MSTORE</h2>
-                <h4>Lorem 听组长的话 d.</h4>
-                <a href="" class="btn button-default">SHOP NOW</a>
-            </div>
-        </li>
-        <li>
-            <img src="img/342.jpg" alt="">
-            <div class="caption slider-content  center-align">
-                <h2>你们 MSTORE</h2>
-                <h4>Lorem 听组长的话 do.</h4>
-                <a href="" class="btn button-default">SHOP NOW</a>
-            </div>
-        </li>
-    </ul>
-
-</div>
-<!-- end slider -->
-
-<!-- features -->
-<div class="features section">
+<!-- contact us -->
+<div class="pages section">
     <div class="container">
-        <div class="row">
-            <div class="col s6">
-                <div class="content">
-                    <div class="icon">
-                        <i class="fa fa-car"></i>
-                    </div>
-                    <h6>Free Shipping</h6>
-                    <p>Lorem ipsum dolor sit amet consectetur</p>
-                </div>
-            </div>
-            <div class="col s6">
-                <div class="content">
-                    <div class="icon">
-                        <i class="fa fa-dollar"></i>
-                    </div>
-                    <h6>Money Back</h6>
-                    <p>Lorem ipsum dolor sit amet consectetur</p>
-                </div>
-            </div>
+        <div class="pages-head">
+            <h3>联系我们</h3>
         </div>
-        <div class="row margin-bottom-0">
-            <div class="col s6">
-                <div class="content">
-                    <div class="icon">
-                        <i class="fa fa-lock"></i>
-                    </div>
-                    <h6>Secure Payment</h6>
-                    <p>Lorem ipsum dolor sit amet consectetur</p>
-                </div>
-            </div>
-            <div class="col s6">
-                <div class="content">
-                    <div class="icon">
-                        <i class="fa fa-support"></i>
-                    </div>
-                    <h6>24/7 Support</h6>
-                    <p>Lorem ipsum dolor sit amet consectetur</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- end features -->
-
-<!-- quote -->
-<div class="section quote">
-    <div class="container">
-        <h4>FASHION UP TO 50% OFF</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid ducimus illo hic iure eveniet</p>
-    </div>
-</div>
-<!-- end quote -->
-
-<!-- product -->
-<div class="section product">
-    <div class="container">
-        <div class="section-head">
-            <h4>新品</h4>
-            <div class="divider-top"></div>
-            <div class="divider-bottom"></div>
-        </div>
-        <div class="row margin-bottom">
-            @foreach($new_shop as $key=>$val)
-                <div class="col s6">
-                    <div class="content">
-                        <img src="{{'/uploads/goodsimg/'.$val->goods_img }}" alt="">
-                        <h6><a href="">{{$val-> goods_name}}</a></h6>
-                        <div class="price">
-                            ${{$val -> goods_price}} <span>${{$val -> goods_bzprice}}</span><b>❤</b>
+        <div class="contact-us">
+            <div class="row">
+                <div class="col s12">
+                    <form action="send-mail.php" class="contact-form" id="contact-form" method="post">
+                        <div class="form-group" id="name-field">
+                            <input type="text" class="validate" id="form-name" name="form-name" placeholder="NAME" required>
                         </div>
-
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </div>
-</div>
-<!-- end product -->
-
-<!-- promo -->
-<div class="promo section">
-    <div class="container">
-        <div class="content">
-            <h4>PRODUCT BUNDLE</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-            <button class="btn button-default">SHOP NOW</button>
-        </div>
-    </div>
-</div>
-<!-- end promo -->
-
-<!-- product -->
-<div class="section product">
-    <div class="container">
-        <div class="section-head">
-            <h4>小编推荐</h4>
-            <div class="divider-top"></div>
-            <div class="divider-bottom"></div>
-        </div>
-
-        <div class="row">
-            @foreach($shop as $k=>$v)
-                <div class="col s6">
-                    <div class="content">
-                        <img src="{{'/uploads/goodsimg/'.$v->goods_img }}" alt="">
-                        <h6><a href="">{{$v-> goods_name}}</a></h6>
-                        <div class="price">
-                            ${{$v-> goods_price}} <span>${{$v-> goods_bzprice}}</span><b>❤</b>
+                        <div class="form-group" id="email-field">
+                            <input type="email" class="validate" id="form-email" name="form-email" placeholder="EMAIL" required>
                         </div>
-                    </div>
+                        <div class="form-group" id="subject-field">
+                            <input type="text" class="validate" id="form-subject" name="form-subject" placeholder="SUBJECT" required>
+                        </div>
+                        <div class="form-group" id="message-field">
+                            <textarea name="form-message" id="form-message" cols="30" rows="10" class="materialize-textarea" placeholder="YOUR MESSAGE" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn button-default" type="submit" id="submit" name="submit">SEND MESSAGE</button>
+                        </div>
+                    </form>
                 </div>
-            @endforeach
-        </div>
-        <div class="pagination-product">
-            {{ $shop->links() }}
+            </div>
         </div>
     </div>
 </div>
-<!-- end product -->
+<!-- end contact us -->
 
 <!-- loader -->
 <div id="fakeLoader"></div>
@@ -543,12 +420,14 @@
     </div>
 </div>
 <!-- end footer -->
+
 <!-- scripts -->
 <script src="js/jquery.min.js"></script>
 <script src="js/materialize.min.js"></script>
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/fakeLoader.min.js"></script>
 <script src="js/animatedModal.min.js"></script>
+<script src="js/contact-form.js"></script>
 <script src="js/main.js"></script>
 
 </body>

@@ -375,7 +375,7 @@
             </div>
         </li>
         <li>
-            <img src="img/ash.jpg" alt="">
+            <img src="img/ash.jpg" alt=''>
             <div class="caption slider-content  center-align">
                 <h2>你们 MSTORE</h2>
                 <h4>Lorem 听组长的话 d.</h4>

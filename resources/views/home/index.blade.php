@@ -369,7 +369,7 @@
         <li>
             <img src="img/下载.jpg" alt="">
             <div class="caption slider-content  center-align">
-                <h2>你们</h2>
+                <h2>我们</h2>
                 <h4>听组长的话</h4>
                 <a href="" class="btn button-default">SHOP</a>
             </div>
@@ -466,8 +466,9 @@
                         <img src="{{'/uploads/goodsimg/'.$val->goods_img }}" alt="">
                         <h6><a href="">{{$val-> goods_name}}</a></h6>
                         <div class="price">
-                            ${{$val -> goods_price}} <span>${{$val -> goods_bzprice}}</span>
+                            ${{$val -> goods_price}} <span>${{$val -> goods_bzprice}}</span><b>❤</b>
                         </div>
+
                         <button class="btn button-default">加入购物车</button>
                     </div>
                 </div>
@@ -505,7 +506,7 @@
                     <img src="{{'/uploads/goodsimg/'.$v->goods_img }}" alt="">
                     <h6><a href="">{{$v-> goods_name}}</a></h6>
                     <div class="price">
-                        ${{$v-> goods_price}} <span>${{$v-> goods_bzprice}}</span>
+                        ${{$v-> goods_price}} <span>${{$v-> goods_bzprice}}</span><b>❤</b>
                     </div>
                     <button class="btn button-default">加入购物车</button>
                 </div>

@@ -435,11 +435,6 @@
                         <div class="price">
                             ${{$val -> goods_price}} <span>${{$val -> goods_bzprice}}</span><b>❤</b>
                         </div>
-
-<<<<<<< HEAD
-                        <button class="btn button-default" id="btu" goods_id="{{$val->goods_id}}"> 加入购物车</button>
-=======
->>>>>>> fd25556f8c66cd56d07e899307a9d3a6ad3cbf72
                     </div>
                 </div>
             @endforeach
@@ -471,7 +466,6 @@
 
         <div class="row">
             @foreach($shop as $k=>$v)
-<<<<<<< HEAD
             <div class="col s6"  >
                 <div class="content">
                     <a href='detil?goods_id={{$v->goods_id}}'>  <img src="{{'/uploads/goodsimg/'.$v->goods_img }}" alt=""></a>
@@ -479,8 +473,6 @@
                     <div class="price">
                         ${{$v-> goods_price}} <span>${{$v-> goods_bzprice}}</span><b>❤</b>
                     </div>
-                    <button class="btn button-default" id="btu" goods_id="{{$v->goods_id}}">加入购物车</button>
-=======
                 <div class="col s6">
                     <div class="content">
                         <img src="{{'/uploads/goodsimg/'.$v->goods_img }}" alt="">
@@ -489,7 +481,6 @@
                             ${{$v-> goods_price}} <span>${{$v-> goods_bzprice}}</span><b>❤</b>
                         </div>
                     </div>
->>>>>>> fd25556f8c66cd56d07e899307a9d3a6ad3cbf72
                 </div>
             @endforeach
         </div>

@@ -26,6 +26,8 @@ Route::post('sendmail', 'contact\ContactController@sendmail');
 //商品列表
 Route::get('/product', 'goodslist\GoodsListController@goodslist');
 
-
 Route::post('/delete', 'Cart\CartController@delete');
+//结算
+Route::get('/order', 'order\OrderController@order');
+
 

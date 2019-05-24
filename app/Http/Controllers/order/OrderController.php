@@ -131,7 +131,7 @@ class OrderController extends Controller
             //支付宝支付
             $this-> getalipay($_GET['oid']);
         }else if($_GET['paytype'] =='2'){
-            echo '微信支付';
+            $this-> getWexinpay($_GET['oid']);
         }
     }
     //支付宝支付
@@ -154,7 +154,7 @@ class OrderController extends Controller
             'sign_type'   => 'RSA2',
             'timestamp'   => date('Y-m-d H:i:s'),
             'version'   => '1.0',
-//            'notify_url'   => 'http://api.mneddx.com/alipayNotify',       //异步通知地址
+            'notify_url'   => 'http://them.mneddx.com/alipayNotify',       //异步通知地址
             'return_url'   => 'http://vm.them.com/succuess',      // 同步通知地址
             'biz_content'   => json_encode($bizcont),
         ];
@@ -186,10 +186,15 @@ class OrderController extends Controller
         $url = 'https://openapi.alipaydev.com/gateway.do'.$trim2;
         header('refresh:2;url='.$url);
     }
-    //支付宝支付成功回调
+    //支付成功回调
     public function  succuess()
     {
         echo '支付成功：三秒后跳至首页';
         header('refresh:2;url=/');
+    }
+    //异步回调
+    public function  alipayNotify()
+    {
+        echo 1111111;
     }
 }

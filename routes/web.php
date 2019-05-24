@@ -39,4 +39,5 @@ Route::get('/orhtml', 'order\OrderController@orhtml');
 Route::get('/alipay', 'order\OrderController@alipay');
 //支付宝支付成功回调
 Route::get('/succuess', 'order\OrderController@succuess');
-
+//支付宝支付成功异步回调
+Route::post('/alipayNotify', 'order\OrderController@alipayNotify');

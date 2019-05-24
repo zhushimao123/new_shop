@@ -369,7 +369,7 @@
         <div class="pages-head">
             <h3>订单支付</h3>
             <h4>订单号：{{$order_nos}} </h4>
-            <a href="" class="btn    button-default">微信支付</a> &nbsp;&nbsp;&nbsp; <a href="alipay?oid={{$order_nos}}&paytype=1" class="btn    button-default">支付宝支付</a>
+            <a href="alipay?oid={{$order_nos}}&paytype=2" class="btn    button-default">微信支付</a> &nbsp;&nbsp;&nbsp; <a href="alipay?oid={{$order_nos}}&paytype=1" class="btn    button-default">支付宝支付</a>
         </div>
 
     </div>

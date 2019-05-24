@@ -27,4 +27,11 @@ Route::get('/product', 'goodslist\GoodsListController@goodslist');
 
 //结算
 Route::get('/order', 'order\OrderController@order');
-
+//确人结算
+Route::get('/orderdo', 'order\OrderController@orderdo');
+//订单页面
+Route::get('/orhtml', 'order\OrderController@orhtml');
+//支付宝支付
+Route::get('/alipay', 'order\OrderController@alipay');
+//支付宝支付成功回调
+Route::get('/succuess', 'order\OrderController@succuess');

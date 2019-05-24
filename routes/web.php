@@ -25,3 +25,6 @@ Route::post('sendmail', 'contact\ContactController@sendmail');
 //商品列表
 Route::get('/product', 'goodslist\GoodsListController@goodslist');
 
+//结算
+Route::get('/order', 'order\OrderController@order');
+

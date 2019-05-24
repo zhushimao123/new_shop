@@ -2,7 +2,7 @@
 <html lang="zxx">
 <head>
     <meta charset="UTF-8">
-    <title>bej4_shop</title>
+    <title>Mstore - Online Shop Mobile Template</title>
     <meta name="viewport" content="width=device-width, initial-scale=1  maximum-scale=1 user-scalable=no">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -46,11 +46,10 @@
         </li>
         <li><a href="setting.html"><i class="fa fa-cog"></i>Settings</a></li>
         <li><a href="about-us.html"><i class="fa fa-user"></i>About Us</a></li>
-        <li><a href="/contact"><i class="fa fa-envelope-o"></i>Contact Us</a></li>
+        <li><a href="contact.html"><i class="fa fa-envelope-o"></i>Contact Us</a></li>
         <li><a href="login.html"><i class="fa fa-sign-in"></i>Login</a></li>
-        <li><a href="/register"><i class="fa fa-user-plus"></i>Register</a></li>
+        <li><a href="register.html"><i class="fa fa-user-plus"></i>Register</a></li>
     </ul>
-    sdsdsds
 </div>
 <!-- end side nav right-->
 
@@ -65,12 +64,12 @@
         </div>
         <div class="col s4">
             <div class="bar-center">
-                <a href="cartdet" id="cart-menu"><i class="fa fa-shopping-basket"></i></a>
+                <a href="#animatedModal" id="cart-menu"><i class="fa fa-shopping-basket"></i></a>
                 <span>2</span>
             </div>
         </div>
         <div class="col s2">
-            <a href="/contact"><i class="fa fa-envelope-o"></i></a>
+            <a href="contact.html"><i class="fa fa-envelope-o"></i></a>
         </div>
         <div class="col s2">
             <a href="#animatedModal2" id="nav-menu"><i class="fa fa-bars"></i></a>
@@ -98,7 +97,7 @@
                     </a>
                 </div>
                 <div class="col s4">
-                    <a href="/product" class="button-link">
+                    <a href="product-list.html" class="button-link">
                         <div class="menu-link">
                             <div class="icon">
                                 <i class="fa fa-bars"></i>
@@ -130,7 +129,7 @@
                     </a>
                 </div>
                 <div class="col s4">
-                    <a href="cartdet" class="button-link">
+                    <a href="cart.html" class="button-link">
                         <div class="menu-link">
                             <div class="icon">
                                 <i class="fa fa-shopping-cart"></i>
@@ -295,6 +294,40 @@
                         </div>
                     </div>
                     <div class="divider"></div>
+                    <div class="cart-2">
+                        <div class="row">
+                            <div class="col s5">
+                                <img src="img/cart-menu2.png" alt="">
+                            </div>
+                            <div class="col s7">
+                                <h5><a href="">Fashion Men's</a></h5>
+                            </div>
+                        </div>
+                        <div class="row quantity">
+                            <div class="col s5">
+                                <h5>Quantity</h5>
+                            </div>
+                            <div class="col s7">
+                                <input value="1" type="text">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s5">
+                                <h5>Price</h5>
+                            </div>
+                            <div class="col s7">
+                                <h5>$20</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s5">
+                                <h5>Action</h5>
+                            </div>
+                            <div class="col s7">
+                                <div class="action"><i class="fa fa-trash"></i></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="total">
                     <div class="row">
@@ -322,184 +355,47 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn button-default">结算</button>
+                <button class="btn button-default">Process to Checkout</button>
             </div>
         </div>
     </div>
 </div>
 <!-- end cart menu -->
 
-<!-- slider -->
-<div class="slider">
-
-    <ul class="slides">
-        <li>
-            <img src="img/下载.jpg" alt="">
-            <div class="caption slider-content  center-align">
-                <h2>我们</h2>
-                <h4>听组长的话</h4>
-                <a href="" class="btn button-default">SHOP</a>
-            </div>
-        </li>
-        <li>
-            <img src="img/ash.jpg" alt=''>
-            <div class="caption slider-content  center-align">
-                <h2>你们 MSTORE</h2>
-                <h4>Lorem 听组长的话 d.</h4>
-                <a href="" class="btn button-default">SHOP NOW</a>
-            </div>
-        </li>
-        <li>
-            <img src="img/342.jpg" alt="">
-            <div class="caption slider-content  center-align">
-                <h2>你们 MSTORE</h2>
-                <h4>Lorem 听组长的话 do.</h4>
-                <a href="" class="btn button-default">SHOP NOW</a>
-            </div>
-        </li>
-    </ul>
-
-</div>
-<!-- end slider -->
-
-<!-- features -->
-<div class="features section">
-    <div class="container">
-        <div class="row">
-            <div class="col s6">
-                <div class="content">
-                    <div class="icon">
-                        <i class="fa fa-car"></i>
-                    </div>
-                    <h6>Free Shipping</h6>
-                    <p>Lorem ipsum dolor sit amet consectetur</p>
-                </div>
-            </div>
-            <div class="col s6">
-                <div class="content">
-                    <div class="icon">
-                        <i class="fa fa-dollar"></i>
-                    </div>
-                    <h6>Money Back</h6>
-                    <p>Lorem ipsum dolor sit amet consectetur</p>
-                </div>
-            </div>
-        </div>
-        <div class="row margin-bottom-0">
-            <div class="col s6">
-                <div class="content">
-                    <div class="icon">
-                        <i class="fa fa-lock"></i>
-                    </div>
-                    <h6>Secure Payment</h6>
-                    <p>Lorem ipsum dolor sit amet consectetur</p>
-                </div>
-            </div>
-            <div class="col s6">
-                <div class="content">
-                    <div class="icon">
-                        <i class="fa fa-support"></i>
-                    </div>
-                    <h6>24/7 Support</h6>
-                    <p>Lorem ipsum dolor sit amet consectetur</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- end features -->
-
-<!-- quote -->
-<div class="section quote">
-    <div class="container">
-        <h4>FASHION UP TO 50% OFF</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid ducimus illo hic iure eveniet</p>
-    </div>
-</div>
-<!-- end quote -->
-
 <!-- product -->
-<div class="section product">
+<div class="section product product-list">
     <div class="container">
-        <div class="section-head">
-            <h4>新品</h4>
-            <div class="divider-top"></div>
-            <div class="divider-bottom"></div>
+        <div class="pages-head">
+            <h3>PRODUCT LIST</h3>
         </div>
-        <div class="row margin-bottom">
-            @foreach($new_shop as $key=>$val)
-                <div class="col s6">
-                    <div class="content">
-                        <a href='detil?goods_id={{$val->goods_id}}'><img src="{{'/uploads/goodsimg/'.$val->goods_img }}" alt=""></a>
-                        <h6><a href='detil?goods_id={{$val->goods_id}}'>{{$val-> goods_name}}</a></h6>
-                        <div class="price">
-                            ${{$val -> goods_price}} <span>${{$val -> goods_bzprice}}</span><b>❤</b>
-                        </div>
-
-<<<<<<< HEAD
-                        <button class="btn button-default" id="btu" goods_id="{{$val->goods_id}}"> 加入购物车</button>
-=======
->>>>>>> fd25556f8c66cd56d07e899307a9d3a6ad3cbf72
-                    </div>
-                </div>
-            @endforeach
+        <div class="input-field">
+            <select id="sel">
+                <option   value="1">New shop</option>
+                <option  value="2">Host shop</option>
+                <option   value="3">Best shop</option>
+            </select>
         </div>
-    </div>
-</div>
-<!-- end product -->
-
-<!-- promo -->
-<div class="promo section">
-    <div class="container">
-        <div class="content">
-            <h4>PRODUCT BUNDLE</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-            <button class="btn button-default">SHOP NOW</button>
-        </div>
-    </div>
-</div>
-<!-- end promo -->
-
-<!-- product -->
-<div class="section product">
-    <div class="container">
-        <div class="section-head">
-            <h4>小编推荐</h4>
-            <div class="divider-top"></div>
-            <div class="divider-bottom"></div>
-        </div>
-
-        <div class="row">
-            @foreach($shop as $k=>$v)
-<<<<<<< HEAD
-            <div class="col s6"  >
+        <div class="row  ssss">
+            @foreach($goodsinfo as $k=> $v)
+            <div class="col s6">
                 <div class="content">
-                    <a href='detil?goods_id={{$v->goods_id}}'>  <img src="{{'/uploads/goodsimg/'.$v->goods_img }}" alt=""></a>
-                    <h6> <a href='detil?goods_id={{$v->goods_id}}'>{{$v-> goods_name}}</a></h6>
+                    <img src="{{'/uploads/goodsimg/'.$v->goods_img }}" alt="">
+                    <h6><a href="">{{$v -> goods_name}}</a></h6>
                     <div class="price">
-                        ${{$v-> goods_price}} <span>${{$v-> goods_bzprice}}</span><b>❤</b>
+                        ${{$v-> goods_price}} <span>${{$v-> goods_bzprice}}</span>
                     </div>
-                    <button class="btn button-default" id="btu" goods_id="{{$v->goods_id}}">加入购物车</button>
-=======
-                <div class="col s6">
-                    <div class="content">
-                        <img src="{{'/uploads/goodsimg/'.$v->goods_img }}" alt="">
-                        <h6><a href="">{{$v-> goods_name}}</a></h6>
-                        <div class="price">
-                            ${{$v-> goods_price}} <span>${{$v-> goods_bzprice}}</span><b>❤</b>
-                        </div>
-                    </div>
->>>>>>> fd25556f8c66cd56d07e899307a9d3a6ad3cbf72
                 </div>
+            </div>
             @endforeach
         </div>
         <div class="pagination-product">
-            {{ $shop->links() }}
+            <ul>
+                {{ $goodsinfo->links() }}
+            </ul>
         </div>
     </div>
 </div>
 <!-- end product -->
-
 <!-- loader -->
 <div id="fakeLoader"></div>
 <!-- end loader -->
@@ -524,6 +420,7 @@
     </div>
 </div>
 <!-- end footer -->
+
 <!-- scripts -->
 <script src="js/jquery.min.js"></script>
 <script src="js/materialize.min.js"></script>
@@ -531,14 +428,22 @@
 <script src="js/fakeLoader.min.js"></script>
 <script src="js/animatedModal.min.js"></script>
 <script src="js/main.js"></script>
-<script>
-    $(function(){
-       $('#btu').click(function(){
-          var id = $(this).attr('goods_id');
-          console.log(id);
-       })
 
-    })
-</script>
 </body>
 </html>
+<script>
+    $(function () {
+            //内容更新事件
+            $('#sel').change(function(){
+                var val = $(this).prop('value');
+
+                $.get({
+                    url:'product',
+                    data:{val:val},
+                    success:function (res) {
+                        $('.ssss').html(res);
+                    }
+                });
+            });
+    })
+</script>

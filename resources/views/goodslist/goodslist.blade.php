@@ -375,7 +375,7 @@
                 <option   value="3">Best shop</option>
             </select>
         </div>
-        <div class="row">
+        <div class="row  ssss">
             @foreach($goodsinfo as $k=> $v)
             <div class="col s6">
                 <div class="content">
@@ -441,7 +441,7 @@
                     url:'product',
                     data:{val:val},
                     success:function (res) {
-                        $('.row').html(res);
+                        $('.ssss').html(res);
                     }
                 });
             });

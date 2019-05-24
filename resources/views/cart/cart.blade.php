@@ -392,7 +392,7 @@
                         <h5>Quantity</h5>
                     </div>
                     <div class="col s7">
-                        <input value="{{$v->buy_number}}" type="text">
+                        <input class="txt" goods_id="{{$v->goods_id}}" value="{{$v->buy_number}}" type="text" onkeyup="value=value.replace(/^(0+)|[^\d]+/g,'')">
                     </div>
                 </div>
                 <div class="row">
@@ -408,7 +408,7 @@
                         <h5>Action</h5>
                     </div>
                     <div class="col s7">
-                        <h5><i class="fa fa-trash"></i></h5>
+                        <h5><i class="fa fa-trash"  goods_id="{{$v->goods_id}}"></i></h5>
                     </div>
                 </div>
             </div>
@@ -423,7 +423,7 @@
                     <h6>总价</h6>
                 </div>
                 <div class="col s5">
-                    <h6>$41.00</h6>
+                    <h6>${{$count}}</h6>
                 </div>
             </div>
         </div>
@@ -464,6 +464,52 @@
 <script src="js/fakeLoader.min.js"></script>
 <script src="js/animatedModal.min.js"></script>
 <script src="js/main.js"></script>
+<script>
+    $(function(){
+        $(".txt").change(function(){
 
+            var data={};
+            var id = $(this).attr('goods_id');
+
+
+            var num=$(this).val();
+
+           data.num=num;
+            data.id=id;
+            var url = "cartdet";
+            $.ajax({
+                type: "get",
+                data: data,
+                dataType: "json",
+                url: url,
+                success: function (data) {
+                    alert(data.msg)
+                }
+            })
+        })
+
+    })
+    $(function(){
+        $(".fa").click(function(){
+
+            var data={};
+            var id = $(this).attr('goods_id');
+
+            data.id=id;
+            var url = "delete";
+            $.ajax({
+                type: "post",
+                data: data,
+                dataType: "json",
+                url: url,
+                success: function (data) {
+                    alert(data.msg);
+                    location.reload();
+                }
+            })
+        })
+
+    })
+</script>
 </body>
 </html>

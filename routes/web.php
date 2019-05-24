@@ -18,10 +18,14 @@ Route::post('/cart', 'Goods\GoodsdetialController@cart');
 Route::get('/cartdet', 'Cart\CartController@cartdet');
 
 
+
 //联系我们
 Route::get('/contact', 'contact\ContactController@contact');
 //接受数据
 Route::post('sendmail', 'contact\ContactController@sendmail');
 //商品列表
 Route::get('/product', 'goodslist\GoodsListController@goodslist');
+
+
+Route::post('/delete', 'Cart\CartController@delete');
 

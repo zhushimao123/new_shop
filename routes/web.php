@@ -20,3 +20,4 @@ Route::get('/', 'home\HomeController@index');
 Route::get('/detil', 'Goods\GoodsdetialController@detial');
 Route::post('/cart', 'Goods\GoodsdetialController@cart');
 Route::get('/cartdet', 'Cart\CartController@cartdet');
+Route::post('/delete', 'Cart\CartController@delete');

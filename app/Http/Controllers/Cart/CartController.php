@@ -32,7 +32,14 @@ class CartController extends Controller
         $price=$v->buy_number*$v->goods_price;
             $count=$count+=$price;
         }
-        return view('cart.cart',['data'=>$data],['count'=>$count]);
+       $a=$data->count();
+      if($a==0){
+
+        return view('cart.no',['a'=>$a,'count'=>$count]);
+      }else{
+          return view('cart.cart',['data'=>$data],['count'=>$count,'a'=>$a]);
+      }
+
     }
     public function delete(Request $request){
       $goods_id=$request->input('id');
@@ -50,4 +57,5 @@ class CartController extends Controller
       }
       return json_encode($req,JSON_UNESCAPED_UNICODE);
     }
+
 }

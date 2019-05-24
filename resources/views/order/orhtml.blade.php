@@ -265,7 +265,7 @@
                                 <img src="img/cart-menu1.png" alt="">
                             </div>
                             <div class="col s7">
-                                <h5><a href=""> sahng</a></h5>
+                                <h5><a href="">Fashion Men's</a></h5>
                             </div>
                         </div>
                         <div class="row quantity">
@@ -362,23 +362,20 @@
 </div>
 <!-- end cart menu -->
 
-<!-- shop single -->
+
+<!-- about us -->
 <div class="pages section">
     <div class="container">
-        @foreach($goodsinfo as $k=> $v)
-        <div class="shop-single  shops" goods_id = "{{$v-> goods_id}}">
-            <img src="{{'/uploads/goodsimg/'.$v->img }}" alt="">
-            <h5>{{$v-> goods_name}}</h5>
-            <div class="price">$20 <span>$28</span></div>
-            <p>购买的数量 ({{$v-> buy_number}})</p>
+        <div class="pages-head">
+            <h3>订单支付</h3>
+            <h4>订单号：{{$order_nos}} </h4>
+            <a href="" class="btn    button-default">微信支付</a> &nbsp;&nbsp;&nbsp; <a href="alipay?oid={{$order_nos}}&paytype=1" class="btn    button-default">支付宝支付</a>
         </div>
-        @endforeach
-        <div class="form-button">
-            <a class="btn  btns  button-default">确认结算</a>
-        </div>
+
     </div>
 </div>
-<!-- end shop single -->
+<!-- end about us -->
+
 
 <!-- loader -->
 <div id="fakeLoader"></div>
@@ -412,26 +409,6 @@
 <script src="js/fakeLoader.min.js"></script>
 <script src="js/animatedModal.min.js"></script>
 <script src="js/main.js"></script>
+
 </body>
 </html>
-<script>
-    $(function () {
-        $('.btns').click(function () {
-              var goods_id = "";
-              $('.shops').each(function (index) {
-                  goods_id +=  $(this).attr('goods_id')+',';
-              })
-                goods_id = goods_id.substr(0,goods_id.length-1);
-               $.get({
-                       url:'orderdo',
-                       data:{goods_id:goods_id},
-                       dataType:'json',
-                       success:function (res) {
-                            if(res.errno =='ok'){
-                              location.href='orhtml?order_id='+res.oreder_id;
-                            }
-                       }
-                 });
-        })
-    })
-</script>

@@ -16,8 +16,8 @@ class CheckLogin
     public function handle($request, Closure $next)
     {
         //echo Session::get('user_name');die;
-        if(Session::get('user_id')==null){
-            return redirect()->to("http://www.newshop.com");
+        if(Session::get('user_name')==null){
+            return redirect()->to("http://them.mneddx.com/login");
         }
         return $next($request);
     }

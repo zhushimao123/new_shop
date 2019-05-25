@@ -195,9 +195,7 @@ class OrderController extends Controller
     //异步回调
     public function  alipayNotify()
     {
-<<<<<<< HEAD
         echo 1111111;
-=======
         $p = json_encode($_POST);
         $data=json_decode($p,true);
         $log_str = "\n>>>>>> " .date('Y-m-d H:i:s') . ' '.$p . " \n";
@@ -207,6 +205,5 @@ class OrderController extends Controller
         //TODO 验签 更新订单状态
 //        $pay_time = strtotime($data['gmt_payment']);
 //        DB::table('api_order')->where('order_no',$data['out_trade_no'])->update(['pay_time'=>$pay_time]);
->>>>>>> orderdo
     }
 }

@@ -50,3 +50,10 @@ Route::get('/alipay', 'order\OrderController@alipay')->middleware('checkLogin');
 Route::get('/succuess', 'order\OrderController@succuess')->middleware('checkLogin');
 //支付宝支付成功异步回调
 Route::post('/alipayNotify', 'order\OrderController@alipayNotify')->middleware('checkLogin');
+Route::get('/succuess', 'order\OrderController@succuess');
+//支付宝支付成功异步回调
+Route::post('/alipayNotify', 'order\OrderController@alipayNotify');
+//ajax轮询改变支付状态
+Route::get('/paystatus', 'order\OrderController@paystatus');
+//微信支付成功回调
+Route::post('/wxnotify', 'order\OrderController@wxnotify');

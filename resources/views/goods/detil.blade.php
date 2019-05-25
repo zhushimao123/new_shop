@@ -50,6 +50,8 @@
 </div>
 <!-- end navbar bottom -->
 
+
+
 <!-- shop single -->
 <div class="pages section">
     <div class="container">
@@ -60,7 +62,7 @@
             <p>{{$data['goods_desc']}}</p>
             <button type="button" class="btn button-default" id="btu" goods_id="{{$data->goods_id}}">加入购物车</button>
         </div>
-
+    </div>
 
 </div>
 <!-- end shop single -->

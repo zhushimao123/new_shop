@@ -24,6 +24,8 @@ class VerifyCsrfToken extends Middleware
         '/*',
         '/cart',
         '/delete',
-        '/alipayNotify'
+        '/alipayNotify',
+        'cart',
+        '/wxnotify'
     ];
 }

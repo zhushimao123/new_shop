@@ -26,7 +26,7 @@
 <div class="navbar-top">
     <!-- site brand	 -->
     <div class="site-brand">
-        <a href="index.html"><h1>Mstore</h1></a>
+        <a href="/"><h1>Mstore</h1></a>
     </div>
     <!-- end site brand	 -->
     <div class="side-nav-panel-right">
@@ -64,15 +64,15 @@
 <div class="navbar-bottom">
     <div class="row">
         <div class="col s2">
-            <a href="index.html"><i class="fa fa-home"></i></a>
+            <a href="/"><i class="fa fa-home"></i></a>
         </div>
         <div class="col s2">
             <a href="wishlist.html"><i class="fa fa-heart"></i></a>
         </div>
         <div class="col s4">
             <div class="bar-center">
-                <a href="#animatedModal" id="cart-menu"><i class="fa fa-shopping-basket"></i></a>
-                <span>2</span>
+                <a href="cartdet" ><i class="fa fa-shopping-basket"></i></a>
+
             </div>
         </div>
         <div class="col s2">
@@ -94,7 +94,7 @@
         <div class="container">
             <div class="row">
                 <div class="col s4">
-                    <a href="index.html" class="button-link">
+                    <a href="/" class="button-link">
                         <div class="menu-link">
                             <div class="icon">
                                 <i class="fa fa-home"></i>
@@ -136,7 +136,7 @@
                     </a>
                 </div>
                 <div class="col s4">
-                    <a href="cart.html" class="button-link">
+                    <a href="cartdet" class="button-link">
                         <div class="menu-link">
                             <div class="icon">
                                 <i class="fa fa-shopping-cart"></i>
@@ -301,40 +301,6 @@
                         </div>
                     </div>
                     <div class="divider"></div>
-                    <div class="cart-2">
-                        <div class="row">
-                            <div class="col s5">
-                                <img src="img/cart-menu2.png" alt="">
-                            </div>
-                            <div class="col s7">
-                                <h5><a href="">Fashion Men's</a></h5>
-                            </div>
-                        </div>
-                        <div class="row quantity">
-                            <div class="col s5">
-                                <h5>Quantity</h5>
-                            </div>
-                            <div class="col s7">
-                                <input value="1" type="text">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col s5">
-                                <h5>Price</h5>
-                            </div>
-                            <div class="col s7">
-                                <h5>$20</h5>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col s5">
-                                <h5>Action</h5>
-                            </div>
-                            <div class="col s7">
-                                <div class="action"><i class="fa fa-trash"></i></div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="total">
                     <div class="row">
@@ -362,7 +328,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn button-default">Process to Checkout</button>
+                <button class="btn button-default">结算</button>
             </div>
         </div>
     </div>
@@ -470,12 +436,11 @@
             @foreach($new_shop as $key=>$val)
                 <div class="col s6">
                     <div class="content">
-                        <img src="{{'/uploads/goodsimg/'.$val->goods_img }}" alt="">
-                        <h6><a href="">{{$val-> goods_name}}</a></h6>
+                        <a href='detil?goods_id={{$val->goods_id}}'><img src="{{'/uploads/goodsimg/'.$val->goods_img }}" alt=""></a>
+                        <h6><a href='detil?goods_id={{$val->goods_id}}'>{{$val-> goods_name}}</a></h6>
                         <div class="price">
                             ${{$val -> goods_price}} <span>${{$val -> goods_bzprice}}</span><b>❤</b>
                         </div>
-
                     </div>
                 </div>
             @endforeach
@@ -507,15 +472,15 @@
 
         <div class="row">
             @foreach($shop as $k=>$v)
-                <div class="col s6">
-                    <div class="content">
-                        <img src="{{'/uploads/goodsimg/'.$v->goods_img }}" alt="">
-                        <h6><a href="">{{$v-> goods_name}}</a></h6>
-                        <div class="price">
-                            ${{$v-> goods_price}} <span>${{$v-> goods_bzprice}}</span><b>❤</b>
-                        </div>
+            <div class="col s6"  >
+                <div class="content">
+                    <a href='detil?goods_id={{$v->goods_id}}'>  <img src="{{'/uploads/goodsimg/'.$v->goods_img }}" alt=""></a>
+                    <h6> <a href='detil?goods_id={{$v->goods_id}}'>{{$v-> goods_name}}</a></h6>
+                    <div class="price">
+                        ${{$v-> goods_price}} <span>${{$v-> goods_bzprice}}</span><b>❤</b>
                     </div>
                 </div>
+            </div>
             @endforeach
         </div>
         <div class="pagination-product">
@@ -556,6 +521,14 @@
 <script src="js/fakeLoader.min.js"></script>
 <script src="js/animatedModal.min.js"></script>
 <script src="js/main.js"></script>
+<script>
+    $(function(){
+       $('#btu').click(function(){
+          var id = $(this).attr('goods_id');
+          console.log(id);
+       })
 
+    })
+</script>
 </body>
 </html>

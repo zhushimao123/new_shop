@@ -20,6 +20,14 @@ Route::get('/login', 'user\UserController@login');
 Route::post('/logindo', 'user\UserController@logindo');
 //退出
 Route::get('/logout', 'user\UserController@logout');
+//商品详情
+Route::get('/detil', 'Goods\GoodsdetialController@detial');
+Route::post('/cart', 'Goods\GoodsdetialController@cart');
+Route::get('/cartdet', 'Cart\CartController@cartdet');
+
+
+
+
 //联系我们
 Route::get('/contact', 'contact\ContactController@contact')->middleware('checkLogin');
 //接受数据
@@ -27,3 +35,18 @@ Route::post('/sendmail', 'contact\ContactController@sendmail');
 //商品列表
 Route::get('/product', 'goodslist\GoodsListController@goodslist');
 
+Route::post('/delete', 'Cart\CartController@delete');
+//结算
+Route::get('/order', 'order\OrderController@order');
+
+
+//确人结算
+Route::get('/orderdo', 'order\OrderController@orderdo');
+//订单页面
+Route::get('/orhtml', 'order\OrderController@orhtml');
+//支付宝支付
+Route::get('/alipay', 'order\OrderController@alipay');
+//支付宝支付成功回调
+Route::get('/succuess', 'order\OrderController@succuess');
+//支付宝支付成功异步回调
+Route::post('/alipayNotify', 'order\OrderController@alipayNotify');

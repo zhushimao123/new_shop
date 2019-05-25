@@ -28,7 +28,7 @@
 <div class="navbar-top">
     <!-- site brand	 -->
     <div class="site-brand">
-        <a href="/"><h1>Mstore</h1></a>
+        <a href="index.html"><h1>Mstore</h1></a>
     </div>
     <!-- end site brand	 -->
     <div class="side-nav-panel-right">
@@ -57,7 +57,7 @@
 <div class="navbar-bottom">
     <div class="row">
         <div class="col s2">
-            <a href="/"><i class="fa fa-home"></i></a>
+            <a href="index.html"><i class="fa fa-home"></i></a>
         </div>
         <div class="col s2">
             <a href="wishlist.html"><i class="fa fa-heart"></i></a>
@@ -87,7 +87,7 @@
         <div class="container">
             <div class="row">
                 <div class="col s4">
-                    <a href="/" class="button-link">
+                    <a href="index.html" class="button-link">
                         <div class="menu-link">
                             <div class="icon">
                                 <i class="fa fa-home"></i>
@@ -362,40 +362,21 @@
 </div>
 <!-- end cart menu -->
 
-<!-- product -->
-<div class="section product product-list">
+
+<!-- about us -->
+<div class="pages section">
     <div class="container">
         <div class="pages-head">
-            <h3>PRODUCT LIST</h3>
+            <h3>订单支付</h3>
+            <h4>订单号：{{$order_nos}} </h4>
+            <a href="alipay?oid={{$order_nos}}&paytype=2" class="btn    button-default">微信支付</a> &nbsp;&nbsp;&nbsp; <a href="alipay?oid={{$order_nos}}&paytype=1" class="btn    button-default">支付宝支付</a>
         </div>
-        <div class="input-field">
-            <select id="sel">
-                <option   value="1">New shop</option>
-                <option  value="2">Host shop</option>
-                <option   value="3">Best shop</option>
-            </select>
-        </div>
-        <div class="row  ssss">
-            @foreach($goodsinfo as $k=> $v)
-            <div class="col s6">
-                <div class="content">
-                    <img src="{{'/uploads/goodsimg/'.$v->goods_img }}" alt="">
-                    <h6><a href="">{{$v -> goods_name}}</a></h6>
-                    <div class="price">
-                        ${{$v-> goods_price}} <span>${{$v-> goods_bzprice}}</span>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-        <div class="pagination-product">
-            <ul>
-                {{ $goodsinfo->links() }}
-            </ul>
-        </div>
+
     </div>
 </div>
-<!-- end product -->
+<!-- end about us -->
+
+
 <!-- loader -->
 <div id="fakeLoader"></div>
 <!-- end loader -->
@@ -431,19 +412,3 @@
 
 </body>
 </html>
-<script>
-    $(function () {
-            //内容更新事件
-            $('#sel').change(function(){
-                var val = $(this).prop('value');
-
-                $.get({
-                    url:'product',
-                    data:{val:val},
-                    success:function (res) {
-                        $('.ssss').html(res);
-                    }
-                });
-            });
-    })
-</script>

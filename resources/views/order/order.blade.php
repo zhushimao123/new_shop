@@ -28,7 +28,7 @@
 <div class="navbar-top">
     <!-- site brand	 -->
     <div class="site-brand">
-        <a href="/"><h1>Mstore</h1></a>
+        <a href="index.html"><h1>Mstore</h1></a>
     </div>
     <!-- end site brand	 -->
     <div class="side-nav-panel-right">
@@ -57,7 +57,7 @@
 <div class="navbar-bottom">
     <div class="row">
         <div class="col s2">
-            <a href="/"><i class="fa fa-home"></i></a>
+            <a href="index.html"><i class="fa fa-home"></i></a>
         </div>
         <div class="col s2">
             <a href="wishlist.html"><i class="fa fa-heart"></i></a>
@@ -87,7 +87,7 @@
         <div class="container">
             <div class="row">
                 <div class="col s4">
-                    <a href="/" class="button-link">
+                    <a href="index.html" class="button-link">
                         <div class="menu-link">
                             <div class="icon">
                                 <i class="fa fa-home"></i>
@@ -265,7 +265,7 @@
                                 <img src="img/cart-menu1.png" alt="">
                             </div>
                             <div class="col s7">
-                                <h5><a href="">Fashion Men's</a></h5>
+                                <h5><a href=""> sahng</a></h5>
                             </div>
                         </div>
                         <div class="row quantity">
@@ -362,40 +362,24 @@
 </div>
 <!-- end cart menu -->
 
-<!-- product -->
-<div class="section product product-list">
+<!-- shop single -->
+<div class="pages section">
     <div class="container">
-        <div class="pages-head">
-            <h3>PRODUCT LIST</h3>
+        @foreach($goodsinfo as $k=> $v)
+        <div class="shop-single  shops" goods_id = "{{$v-> goods_id}}">
+            <img src="{{'/uploads/goodsimg/'.$v->img }}" alt="">
+            <h5>{{$v-> goods_name}}</h5>
+            <div class="price">$20 <span>$28</span></div>
+            <p>购买的数量 ({{$v-> buy_number}})</p>
         </div>
-        <div class="input-field">
-            <select id="sel">
-                <option   value="1">New shop</option>
-                <option  value="2">Host shop</option>
-                <option   value="3">Best shop</option>
-            </select>
-        </div>
-        <div class="row  ssss">
-            @foreach($goodsinfo as $k=> $v)
-            <div class="col s6">
-                <div class="content">
-                    <img src="{{'/uploads/goodsimg/'.$v->goods_img }}" alt="">
-                    <h6><a href="">{{$v -> goods_name}}</a></h6>
-                    <div class="price">
-                        ${{$v-> goods_price}} <span>${{$v-> goods_bzprice}}</span>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-        <div class="pagination-product">
-            <ul>
-                {{ $goodsinfo->links() }}
-            </ul>
+        @endforeach
+        <div class="form-button">
+            <a class="btn  btns  button-default">确认结算</a>
         </div>
     </div>
 </div>
-<!-- end product -->
+<!-- end shop single -->
+
 <!-- loader -->
 <div id="fakeLoader"></div>
 <!-- end loader -->
@@ -428,22 +412,26 @@
 <script src="js/fakeLoader.min.js"></script>
 <script src="js/animatedModal.min.js"></script>
 <script src="js/main.js"></script>
-
 </body>
 </html>
 <script>
     $(function () {
-            //内容更新事件
-            $('#sel').change(function(){
-                var val = $(this).prop('value');
-
-                $.get({
-                    url:'product',
-                    data:{val:val},
-                    success:function (res) {
-                        $('.ssss').html(res);
-                    }
-                });
-            });
+        $('.btns').click(function () {
+              var goods_id = "";
+              $('.shops').each(function (index) {
+                  goods_id +=  $(this).attr('goods_id')+',';
+              })
+                goods_id = goods_id.substr(0,goods_id.length-1);
+               $.get({
+                       url:'orderdo',
+                       data:{goods_id:goods_id},
+                       dataType:'json',
+                       success:function (res) {
+                            if(res.errno =='ok'){
+                              location.href='orhtml?order_id='+res.oreder_id;
+                            }
+                       }
+                 });
+        })
     })
 </script>

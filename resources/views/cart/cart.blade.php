@@ -64,8 +64,8 @@
         </div>
         <div class="col s4">
             <div class="bar-center">
-                <a href="#animatedModal" id="cart-menu"><i class="fa fa-shopping-basket"></i></a>
-                <span>2</span>
+                <a href="cartdet"><i class="fa fa-shopping-basket"></i></a>
+            <span>{{$a}}</span>
             </div>
         </div>
         <div class="col s2">
@@ -129,7 +129,7 @@
                     </a>
                 </div>
                 <div class="col s4">
-                    <a href="cart.html" class="button-link">
+                    <a href="cartdet" class="button-link">
                         <div class="menu-link">
                             <div class="icon">
                                 <i class="fa fa-shopping-cart"></i>
@@ -251,151 +251,188 @@
 <!-- end menu -->
 
 <!-- cart menu -->
-<div class="menus" id="animatedModal">
-    <div class="close-animatedModal close-icon">
-        <i class="fa fa-close"></i>
-    </div>
-    <div class="modal-content">
-        <div class="cart-menu">
-            <div class="container">
-                <div class="content">
-                    <div class="cart-1">
-                        <div class="row">
-                            <div class="col s5">
-                                <img src="img/cart-menu1.png" alt="">
-                            </div>
-                            <div class="col s7">
-                                <h5><a href="">Fashion Men's</a></h5>
-                            </div>
-                        </div>
-                        <div class="row quantity">
-                            <div class="col s5">
-                                <h5>Quantity</h5>
-                            </div>
-                            <div class="col s7">
-                                <input value="1" type="text">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col s5">
-                                <h5>Price</h5>
-                            </div>
-                            <div class="col s7">
-                                <h5>$20</h5>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col s5">
-                                <h5>Action</h5>
-                            </div>
-                            <div class="col s7">
-                                <div class="action"><i class="fa fa-trash"></i></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="cart-2">
-                        <div class="row">
-                            <div class="col s5">
-                                <img src="img/cart-menu2.png" alt="">
-                            </div>
-                            <div class="col s7">
-                                <h5><a href="">Fashion Men's</a></h5>
-                            </div>
-                        </div>
-                        <div class="row quantity">
-                            <div class="col s5">
-                                <h5>Quantity</h5>
-                            </div>
-                            <div class="col s7">
-                                <input value="1" type="text">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col s5">
-                                <h5>Price</h5>
-                            </div>
-                            <div class="col s7">
-                                <h5>$20</h5>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col s5">
-                                <h5>Action</h5>
-                            </div>
-                            <div class="col s7">
-                                <div class="action"><i class="fa fa-trash"></i></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="total">
-                    <div class="row">
-                        <div class="col s7">
-                            <h5>Fashion Men's</h5>
-                        </div>
-                        <div class="col s5">
-                            <h5>$21.00</h5>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s7">
-                            <h5>Fashion Men's</h5>
-                        </div>
-                        <div class="col s5">
-                            <h5>$21.00</h5>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s7">
-                            <h6>Total</h6>
-                        </div>
-                        <div class="col s5">
-                            <h6>$41.00</h6>
-                        </div>
-                    </div>
-                </div>
-                <button class="btn button-default">Process to Checkout</button>
-            </div>
-        </div>
-    </div>
-</div>
+{{--<div class="menus" id="animatedModal">--}}
+    {{--<div class="close-animatedModal close-icon">--}}
+        {{--<i class="fa fa-close"></i>--}}
+    {{--</div>--}}
+    {{--<div class="modal-content">--}}
+        {{--<div class="cart-menu">--}}
+            {{--<div class="container">--}}
+                {{--<div class="content">--}}
+                    {{--<div class="cart-1">--}}
+                        {{--<div class="row">--}}
+                            {{--<div class="col s5">--}}
+                                {{--<img src="img/cart-menu1.png" alt="">--}}
+                            {{--</div>--}}
+                            {{--<div class="col s7">--}}
+                                {{--<h5><a href="">Fashion Men's</a></h5>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="row quantity">--}}
+                            {{--<div class="col s5">--}}
+                                {{--<h5>Quantity</h5>--}}
+                            {{--</div>--}}
+                            {{--<div class="col s7">--}}
+                                {{--<input value="1" type="text">--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="row">--}}
+                            {{--<div class="col s5">--}}
+                                {{--<h5>Price</h5>--}}
+                            {{--</div>--}}
+                            {{--<div class="col s7">--}}
+                                {{--<h5>$20</h5>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="row">--}}
+                            {{--<div class="col s5">--}}
+                                {{--<h5>Action</h5>--}}
+                            {{--</div>--}}
+                            {{--<div class="col s7">--}}
+                                {{--<div class="action"><i class="fa fa-trash"></i></div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="divider"></div>--}}
+                    {{--<div class="cart-2">--}}
+                        {{--<div class="row">--}}
+                            {{--<div class="col s5">--}}
+                                {{--<img src="img/cart-menu2.png" alt="">--}}
+                            {{--</div>--}}
+                            {{--<div class="col s7">--}}
+                                {{--<h5><a href="">Fashion Men's</a></h5>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="row quantity">--}}
+                            {{--<div class="col s5">--}}
+                                {{--<h5>Quantity</h5>--}}
+                            {{--</div>--}}
+                            {{--<div class="col s7">--}}
+                                {{--<input value="1" type="text">--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="row">--}}
+                            {{--<div class="col s5">--}}
+                                {{--<h5>Price</h5>--}}
+                            {{--</div>--}}
+                            {{--<div class="col s7">--}}
+                                {{--<h5>$20</h5>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="row">--}}
+                            {{--<div class="col s5">--}}
+                                {{--<h5>Action</h5>--}}
+                            {{--</div>--}}
+                            {{--<div class="col s7">--}}
+                                {{--<div class="action"><i class="fa fa-trash"></i></div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--<div class="total">--}}
+                    {{--<div class="row">--}}
+                        {{--<div class="col s7">--}}
+                            {{--<h5>Fashion Men's</h5>--}}
+                        {{--</div>--}}
+                        {{--<div class="col s5">--}}
+                            {{--<h5>$21.00</h5>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="row">--}}
+                        {{--<div class="col s7">--}}
+                            {{--<h5>Fashion Men's</h5>--}}
+                        {{--</div>--}}
+                        {{--<div class="col s5">--}}
+                            {{--<h5>$21.00</h5>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="row">--}}
+                        {{--<div class="col s7">--}}
+                            {{--<h6>Total</h6>--}}
+                        {{--</div>--}}
+                        {{--<div class="col s5">--}}
+                            {{--<h6>$41.00</h6>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--<button class="btn button-default">Process to Checkout</button>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
+{{--</div>--}}
 <!-- end cart menu -->
 
-<!-- product -->
-<div class="section product product-list">
+<!-- cart -->
+<div class="cart section">
     <div class="container">
         <div class="pages-head">
-            <h3>PRODUCT LIST</h3>
+            <h3>CART</h3>
         </div>
-        <div class="input-field">
-            <select id="sel">
-                <option   value="1">New shop</option>
-                <option  value="2">Host shop</option>
-                <option   value="3">Best shop</option>
-            </select>
-        </div>
-        <div class="row  ssss">
-            @foreach($goodsinfo as $k=> $v)
-            <div class="col s6">
-                <div class="content">
-                    <img src="{{'/uploads/goodsimg/'.$v->goods_img }}" alt="">
-                    <h6><a href="">{{$v -> goods_name}}</a></h6>
-                    <div class="price">
-                        ${{$v-> goods_price}} <span>${{$v-> goods_bzprice}}</span>
+        <div class="content">
+
+            @foreach($data as $v)
+            <div class="cart-1">
+                <div class="row">
+                    <div class="col s5">
+                        <h5>Image</h5>
+                    </div>
+                    <div class="col s7">
+                        <img src="{{'/uploads/goodsimg/'.$v->img }}" alt="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s5">
+                        <h5>Name</h5>
+                    </div>
+                    <div class="col s7">
+                        <h5><a href="">{{$v->goods_name}}</a></h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s5">
+                        <h5>Quantity</h5>
+                    </div>
+                    <div class="col s7">
+                        <input class="txt" goods_id="{{$v->goods_id}}" value="{{$v->buy_number}}" type="text" onkeyup="value=value.replace(/^(0+)|[^\d]+/g,'')">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s5">
+                        <h5>Price</h5>
+                    </div>
+                    <div class="col s7">
+                        <h5>${{$v->goods_price}}</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s5">
+                        <h5>Action</h5>
+                    </div>
+                    <div class="col s7">
+                        <h5><i class="fa fa-trash" class="del" goods_id="{{$v->goods_id}}"></i></h5>
                     </div>
                 </div>
             </div>
-            @endforeach
+            <div class="divider"></div>
+@endforeach
         </div>
-        <div class="pagination-product">
-            <ul>
-                {{ $goodsinfo->links() }}
-            </ul>
+        <div class="total">
+
+
+            <div class="row">
+                <div class="col s7">
+                    <h6>总价</h6>
+                </div>
+                <div class="col s5">
+                    <h6>${{$count}}</h6>
+                </div>
+            </div>
         </div>
+        <a class="btn  button-default" href="order">结算</a>
     </div>
 </div>
-<!-- end product -->
+<!-- end cart -->
+
 <!-- loader -->
 <div id="fakeLoader"></div>
 <!-- end loader -->
@@ -428,22 +465,52 @@
 <script src="js/fakeLoader.min.js"></script>
 <script src="js/animatedModal.min.js"></script>
 <script src="js/main.js"></script>
-
-</body>
-</html>
 <script>
-    $(function () {
-            //内容更新事件
-            $('#sel').change(function(){
-                var val = $(this).prop('value');
+    $(function(){
+        $(".txt").change(function(){
 
-                $.get({
-                    url:'product',
-                    data:{val:val},
-                    success:function (res) {
-                        $('.ssss').html(res);
-                    }
-                });
-            });
+            var data={};
+            var id = $(this).attr('goods_id');
+
+
+            var num=$(this).val();
+
+           data.num=num;
+            data.id=id;
+            var url = "cartdet";
+            $.ajax({
+                type: "get",
+                data: data,
+                dataType: "json",
+                url: url,
+                success: function (data) {
+                    alert(data.msg)
+                }
+            })
+        })
+
+    })
+    $(function(){
+        $(".fa-trash").click(function(){
+
+            var data={};
+            var id = $(this).attr('goods_id');
+
+            data.id=id;
+            var url = "delete";
+            $.ajax({
+                type: "post",
+                data: data,
+                dataType: "json",
+                url: url,
+                success: function (data) {
+                    alert(data.msg);
+                    location.reload();
+                }
+            })
+        })
+
     })
 </script>
+</body>
+</html>

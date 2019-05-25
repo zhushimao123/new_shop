@@ -6,16 +6,25 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\detial;
 use App\Model\cartmodel;
-
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redis;
 class GoodsdetialController extends Controller
 {
     public function detial(Request $request){
+        $session_name=Session::get('user_name');
+        $data=cartmodel::where(['cart_status'=>1])->select()->paginate(6);
+        $count=0;
+        foreach ($data as $k => $v){
+            $price=$v->buy_number*$v->goods_price;
+            $count=$count+=$price;
+        }
+        $a=$data->count();
+
         $id=$request->input('goods_id');
 
        $data= detial::where(['goods_id'=>$id])->first();
       // var_dump($data);exit;
-        return view('goods.detil',['data'=>$data]);
+        return view('goods.detil',['data'=>$data,'session_name'=>$session_name,'a'=>$a]);
     }
     public function cart(Request $request){
         $id=$request->input('id');

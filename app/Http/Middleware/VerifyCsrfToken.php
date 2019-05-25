@@ -22,11 +22,19 @@ class VerifyCsrfToken extends Middleware
         '/regdo',
         '/logindo',
         '/*',
+<<<<<<< HEAD
         'cart',
         'delete',
         '/alipayNotify',
         'cart',
         '/wxnotify',
         '/orderdo'
+=======
+        '/cart',
+        '/delete',
+        '/alipayNotify',
+        'cart',
+        '/wxnotify'
+>>>>>>> b8424fc0ea9240100e8be9266f224115118d36dc
     ];
 }

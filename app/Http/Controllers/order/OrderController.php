@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Model\cartmodel;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\order\WXBizDataCryptController;
 class OrderController extends Controller
 {
@@ -18,8 +19,10 @@ class OrderController extends Controller
 
     public function order()
     {
+        $session_name=Session::get('user_name');
+
         $goodsinfo = DB::table('shop_cart')->where(['user_id'=>1])->get();
-       return view('order.order',['goodsinfo'=>$goodsinfo]);
+       return view('order.order',['goodsinfo'=>$goodsinfo,'session_name'=>$session_name]);
     }
     //确认结算
     public function orderdo()
@@ -103,6 +106,14 @@ class OrderController extends Controller
     //订单页面
     public  function orhtml()
     {
+        $session_name=Session::get('user_name');
+        $data=cartmodel::where(['cart_status'=>1])->select()->paginate(6);
+        $count=0;
+        foreach ($data as $k => $v){
+            $price=$v->buy_number*$v->goods_price;
+            $count=$count+=$price;
+        }
+        $a=$data->count();
         if(empty($_GET['order_id'])){
             $response = [
                 'errno'=> 'no',
@@ -111,7 +122,7 @@ class OrderController extends Controller
         }
         $order_no = DB::table('shop_order')->where(['order_id'=> $_GET['order_id']])->first();
         $order_nos = $order_no-> order_no;
-        return view('order.orhtml',['order_nos'=> $order_nos]);
+        return view('order.orhtml',['order_nos'=> $order_nos,'session_name'=>$session_name,'a'=>$a]);
     }
     //支付
     public function alipay()
@@ -153,7 +164,7 @@ class OrderController extends Controller
         ];
         //公共参数
         $data = [
-            'app_id'   => '2016092700608889',
+            'app_id'   => '2016092600600197',
             'method'   => 'alipay.trade.wap.pay',
             'format'   => 'JSON',
             'charset'   => 'utf-8',
@@ -201,7 +212,6 @@ class OrderController extends Controller
     //异步回调
     public function  alipayNotify()
     {
-        echo 1111111;
         $p = json_encode($_POST);
         $data=json_decode($p,true);
         $log_str = "\n>>>>>> " .date('Y-m-d H:i:s') . ' '.$p . " \n";
@@ -211,6 +221,7 @@ class OrderController extends Controller
         //TODO 验签 更新订单状态
 //        $pay_time = strtotime($data['gmt_payment']);
 //        DB::table('api_order')->where('order_no',$data['out_trade_no'])->update(['pay_time'=>$pay_time]);
+
     }
 
     //微信支付
@@ -368,6 +379,7 @@ class OrderController extends Controller
 //        order::where(['order_no'=>$xml->out_trade_no])->update(['pay_amount'=>$xml->cash_fee,'pay_time'=>$pay_time]);
 //        $response = '<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>';
 //        echo $response;
+
     }
 }
 

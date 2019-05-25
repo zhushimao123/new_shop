@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Cart;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\cartmodel;
+use Illuminate\Support\Facades\Session;
 class CartController extends Controller
 {
     public function cartdet(Request $request){
+
+        $session_name=Session::get('user_name');
 
         $txt=$request->input('num');
         $id=$request->input('id');
@@ -35,9 +38,9 @@ class CartController extends Controller
        $a=$data->count();
       if($a==0){
 
-        return view('cart.no',['a'=>$a,'count'=>$count]);
+        return view('cart.no',['a'=>$a,'count'=>$count,'session_name'=>$session_name]);
       }else{
-          return view('cart.cart',['data'=>$data],['count'=>$count,'a'=>$a]);
+          return view('cart.cart',['data'=>$data,'session_name'=>$session_name],['count'=>$count,'a'=>$a]);
       }
 
     }

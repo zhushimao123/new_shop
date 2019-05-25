@@ -91,7 +91,7 @@
                     </a>
                 </div>
                 <div class="col s4">
-                    <a href="cartdet" class="button-link">
+                    <a href="/cartdet" class="button-link">
                         <div class="menu-link">
                             <div class="icon">
                                 <i class="fa fa-shopping-cart"></i>
@@ -101,7 +101,7 @@
                     </a>
                 </div>
                 <div class="col s4">
-                    <a href="checkout.html" class="button-link">
+                    <a href="/order" class="button-link">
                         <div class="menu-link">
                             <div class="icon">
                                 <i class="fa fa-credit-card"></i>
@@ -165,7 +165,7 @@
                     </a>
                 </div>
                 <div class="col s4">
-                    <a href="contact.html" class="button-link">
+                    <a href="/contact" class="button-link">
                         <div class="menu-link">
                             <div class="icon">
                                 <i class="fa fa-envelope-o"></i>

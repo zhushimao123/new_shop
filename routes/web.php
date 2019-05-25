@@ -37,7 +37,7 @@ Route::get('/product', 'goodslist\GoodsListController@goodslist');
 
 Route::post('/delete', 'Cart\CartController@delete');
 //结算
-Route::get('/order', 'order\OrderController@order');
+Route::get('/order', 'order\OrderController@order')->middleware('checkLogin');
 
 
 //确认结算

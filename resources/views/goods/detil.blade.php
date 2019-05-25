@@ -79,17 +79,14 @@
 <!-- end navbar bottom -->
 
 <!-- menu -->
-<<<<<<< HEAD
 <div class="menus" id="animatedModal2">
     <div class="close-animatedModal2 close-icon">
         <i class="fa fa-close"></i>
     </div>
-=======
 {{--<div class="menus" id="animatedModal2">--}}
     {{--<div class="close-animatedModal2 close-icon">--}}
         {{--<i class="fa fa-close"></i>--}}
     {{--</div>--}}
->>>>>>> cart
     {{--<div class="modal-content">--}}
         {{--<div class="container">--}}
             {{--<div class="row">--}}
@@ -254,11 +251,8 @@
             {{--</div>--}}
         {{--</div>--}}
     {{--</div>--}}
-<<<<<<< HEAD
 </div>
-=======
 {{--</div>--}}
->>>>>>> cart
 <!-- end menu -->
 
 <!-- cart menu -->

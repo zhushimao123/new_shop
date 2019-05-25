@@ -439,7 +439,7 @@
                         <a href='detil?goods_id={{$val->goods_id}}'><img src="{{'/uploads/goodsimg/'.$val->goods_img }}" alt=""></a>
                         <h6><a href='detil?goods_id={{$val->goods_id}}'>{{$val-> goods_name}}</a></h6>
                         <div class="price">
-                            ${{$val -> goods_price}} <span>${{$val -> goods_bzprice}}</span><b>❤</b>
+                            ${{$val -> goods_price}} <span>${{$val -> goods_bzprice}}</span>&nbsp;&nbsp;&nbsp;&nbsp;<b>❤</b>
                         </div>
                     </div>
                 </div>
@@ -477,7 +477,7 @@
                     <a href='detil?goods_id={{$v->goods_id}}'>  <img src="{{'/uploads/goodsimg/'.$v->goods_img }}" alt=""></a>
                     <h6> <a href='detil?goods_id={{$v->goods_id}}'>{{$v-> goods_name}}</a></h6>
                     <div class="price">
-                        ${{$v-> goods_price}} <span>${{$v-> goods_bzprice}}</span><b>❤</b>
+                        ${{$v-> goods_price}} <span>${{$v-> goods_bzprice}}</span>&nbsp;&nbsp;&nbsp;&nbsp;<b>❤</b>
                     </div>
                 </div>
             </div>

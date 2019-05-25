@@ -445,7 +445,7 @@
             //     return false;
             // }
             $.ajax({
-                url:"http://www.newshop.com/logindo",
+                url:"http://vm.them.com/logindo",
                 data:{user_name:user_name,user_pwd:user_pwd},
                 dataType:'json',
                 type:'post',
@@ -456,7 +456,7 @@
                         alert(res.msg);
                     }else{
                         alert('登录成功');
-                        location.href="http://www.newshop.com/";
+                        location.href="http://vm.them.com/";
                     }
                 }
             });

@@ -88,7 +88,7 @@ class UserController extends Controller
         $request->session()->forget('user_name');
         $s=Session::get('user_name');
         if(!$s){
-            header('refresh:1;url=http://www.newshop.com');
+            header('refresh:1;url=http://vm.them.com');
         }
     }
 }

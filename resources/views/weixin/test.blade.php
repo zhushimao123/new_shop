@@ -95,7 +95,7 @@
             success: function(d){
                 if(d.status==0){
                     alert("支付成功,即将跳转商品首页");
-                    location.href = "/";
+                    location.href = "them.mneddx.com";
                 }
             }
         });

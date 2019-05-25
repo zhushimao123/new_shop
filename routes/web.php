@@ -12,6 +12,14 @@
 */
 //首页
 Route::get('/', 'home\HomeController@index');
+//注册
+Route::get('/register', 'user\UserController@register');
+Route::post('/regdo', 'user\UserController@regdo');
+//登录
+Route::get('/login', 'user\UserController@login');
+Route::post('/logindo', 'user\UserController@logindo');
+//退出
+Route::get('/logout', 'user\UserController@logout');
 //商品详情
 Route::get('/detil', 'Goods\GoodsdetialController@detial');
 Route::post('/cart', 'Goods\GoodsdetialController@cart');
@@ -19,10 +27,11 @@ Route::get('/cartdet', 'Cart\CartController@cartdet');
 
 
 
+
 //联系我们
-Route::get('/contact', 'contact\ContactController@contact');
+Route::get('/contact', 'contact\ContactController@contact')->middleware('checkLogin');
 //接受数据
-Route::post('sendmail', 'contact\ContactController@sendmail');
+Route::post('/sendmail', 'contact\ContactController@sendmail');
 //商品列表
 Route::get('/product', 'goodslist\GoodsListController@goodslist');
 

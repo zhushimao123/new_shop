@@ -20,15 +20,13 @@
     <link rel="stylesheet" href="css/style.css">
 
     <link rel="shortcut icon" href="img/favicon.png">
-
 </head>
 <body>
-
 <!-- navbar top -->
 <div class="navbar-top">
     <!-- site brand	 -->
     <div class="site-brand">
-        <a href="index.html"><h1>Mstore</h1></a>
+        <a href="/"><h1>Mstore</h1></a>
     </div>
     <!-- end site brand	 -->
     <div class="side-nav-panel-right">
@@ -40,17 +38,25 @@
 <!-- side nav right-->
 <div class="side-nav-panel-right">
     <ul id="slide-out-right" class="side-nav side-nav-panel collapsible">
+
+        @if($session_name==null)
         <li class="profil">
             <img src="img/profile.jpg" alt="">
             <h2>John Doe</h2>
         </li>
-        <li><a href="setting.html"><i class="fa fa-cog"></i>Settings</a></li>
-        <li><a href="about-us.html"><i class="fa fa-user"></i>About Us</a></li>
-        <li><a href="/contact"><i class="fa fa-envelope-o"></i>Contact Us</a></li>
-        <li><a href="login.html"><i class="fa fa-sign-in"></i>Login</a></li>
-        <li><a href="/register"><i class="fa fa-user-plus"></i>Register</a></li>
+            <li><a href="/contact"><i class="fa fa-user"></i>About Us</a></li>
+            {{--<li><a href="/contact"><i class="fa fa-envelope-o"></i>Contact Us</a></li>--}}
+            <li><a href="/login"><i class="fa fa-sign-in"></i>Login</a></li>
+            <li><a href="/register"><i class="fa fa-user-plus"></i>Register</a></li>
+        @else
+            <li class="profil">
+                <img src="img/下载.jpg" alt="">
+                <h2>欢迎<font color="red">{{$session_name}}</font>登录</h2>
+            </li>
+            <li><a href="/contact"><i class="fa fa-user"></i>About Us</a></li>
+            <li><a href="/logout"><i class="fa fa-sign-out"></i>Logout</a></li>
+        @endif
     </ul>
-    sdsdsds
 </div>
 <!-- end side nav right-->
 
@@ -58,15 +64,15 @@
 <div class="navbar-bottom">
     <div class="row">
         <div class="col s2">
-            <a href="index.html"><i class="fa fa-home"></i></a>
+            <a href="/"><i class="fa fa-home"></i></a>
         </div>
         <div class="col s2">
             <a href="wishlist.html"><i class="fa fa-heart"></i></a>
         </div>
         <div class="col s4">
             <div class="bar-center">
-                <a href="cartdet" id="cart-menu"><i class="fa fa-shopping-basket"></i></a>
-                <span>2</span>
+                <a href="cartdet" ><i class="fa fa-shopping-basket"></i></a>
+
             </div>
         </div>
         <div class="col s2">
@@ -88,7 +94,7 @@
         <div class="container">
             <div class="row">
                 <div class="col s4">
-                    <a href="index.html" class="button-link">
+                    <a href="/" class="button-link">
                         <div class="menu-link">
                             <div class="icon">
                                 <i class="fa fa-home"></i>

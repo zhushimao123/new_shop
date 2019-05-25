@@ -1,5 +1,6 @@
 <div class="row">
     @foreach($goodsinfo as $k=> $v)
+        <a href="detil?goods_id={{$v->goods_id}}">
         <div class="col s6">
             <div class="content">
                 <img src="{{'/uploads/goodsimg/'.$v->goods_img }}" alt="">
@@ -9,5 +10,6 @@
                 </div>
             </div>
         </div>
+        </a>
     @endforeach
 </div>

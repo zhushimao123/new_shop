@@ -64,8 +64,8 @@
         </div>
         <div class="col s4">
             <div class="bar-center">
-                <a href="#animatedModal" id="cart-menu"><i class="fa fa-shopping-basket"></i></a>
-                <span>2</span>
+                <a href="caerdet" id="cart-menu"><i class="fa fa-shopping-basket"></i></a>
+
             </div>
         </div>
         <div class="col s2">
@@ -379,7 +379,7 @@
             @foreach($goodsinfo as $k=> $v)
             <div class="col s6">
                 <div class="content">
-                    <img src="{{'/uploads/goodsimg/'.$v->goods_img }}" alt="">
+                    <a href="detil?goods_id={{$v->goods_id}}"><img src="{{'/uploads/goodsimg/'.$v->goods_img }}" alt=""></a>
                     <h6><a href="">{{$v -> goods_name}}</a></h6>
                     <div class="price">
                         ${{$v-> goods_price}} <span>${{$v-> goods_bzprice}}</span>

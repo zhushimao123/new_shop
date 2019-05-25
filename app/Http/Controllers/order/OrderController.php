@@ -375,11 +375,11 @@ class OrderController extends Controller
         file_put_contents('logs/wx_pay_notice.log',$log_str,FILE_APPEND);
         $xml = simplexml_load_string($data);
 
-        $pay_time = strtotime($xml->time_end);
+//        $pay_time = strtotime($xml->time_end);
         //支付成功
-        DB::table('shop_order')->where(['order_no'=>$xml->out_trade_no])->update(['pay_amount'=>$xml->cash_fee,'pay_time'=>$pay_time]);
-        $response = '<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>';
-        echo $response;
+        DB::table('shop_order')->where(['order_no'=>$xml->out_trade_no])->update(['pay_time'=>time()]);
+//        $response = '<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>';
+//        echo $response;
 
     }
 }

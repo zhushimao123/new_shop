@@ -23,7 +23,7 @@ Route::get('/logout', 'user\UserController@logout');
 //商品详情
 Route::get('/detil', 'Goods\GoodsdetialController@detial');
 Route::post('/cart', 'Goods\GoodsdetialController@cart');
-Route::get('/cartdet', 'Cart\CartController@cartdet')->middleware('checkLogin');
+Route::get('/cartdet', 'Cart\CartController@cartdet');
 
 
 

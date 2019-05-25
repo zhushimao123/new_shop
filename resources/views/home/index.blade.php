@@ -199,7 +199,7 @@
                             <div class="icon">
                                 <i class="fa fa-user"></i>
                             </div>
-                            About Us
+                            About us
                         </div>
                     </a>
                 </div>

@@ -39,7 +39,6 @@
             <div class="bar-center">
                 <a href="/cartdet"><i class="fa fa-shopping-basket"></i></a>
                 <span>{{$a}}</span>
-                <a href="caerdet" id="cart-menu"><i class="fa fa-shopping-basket"></i></a>
             </div>
         </div>
         <div class="col s2">

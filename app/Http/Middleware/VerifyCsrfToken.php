@@ -19,11 +19,16 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
+<<<<<<< HEAD
         '/regdo',
         '/logindo',
         '/*',
         'cart',
         'delete',
         '/alipayNotify'
+=======
+        'cart',
+        '/wxnotify'
+>>>>>>> orderdo
     ];
 }

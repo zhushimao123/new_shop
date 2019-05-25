@@ -14,7 +14,8 @@ class UserController extends Controller
     //注册首页
     public function register()
     {
-        return view('user/register');
+        $session_name=Session::get('user_name');
+        return view('user/register',['session_name'=>$session_name]);
     }
     //注册执行
     public function regdo(Request $request)
@@ -52,7 +53,8 @@ class UserController extends Controller
     //登录首页
     public function login()
     {
-        return view('user/login');
+        $session_name=Session::get('user_name');
+        return view('user/login',['session_name'=>$session_name]);
     }
     //登录执行
     public function logindo(Request $request)
@@ -88,7 +90,7 @@ class UserController extends Controller
         $request->session()->forget('user_name');
         $s=Session::get('user_name');
         if(!$s){
-            header('refresh:1;url=http://www.newshop.com');
+            return redirect()->to("http://www.newshop.com");
         }
     }
 }

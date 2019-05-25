@@ -7,10 +7,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Model\cartmodel;
 use Illuminate\Support\Str;
-//use
-
+use App\Http\Controllers\order\WXBizDataCryptController;
 class OrderController extends Controller
 {
+    //全局变量   微信支付
+    public $values = [];
+    public  $url = 'https://api.mch.weixin.qq.com/pay/unifiedorder'; //统一下单接口
+    public  $notify_url = 'http://them.mneddx.com/wxnotify'; //支付成功回调
+
+
     public function order()
     {
         $goodsinfo = DB::table('shop_cart')->where(['user_id'=>1])->get();
@@ -89,7 +94,6 @@ class OrderController extends Controller
         ];
         die(json_encode($response,JSON_UNESCAPED_UNICODE));
     }
-
     //订单号
     public function str()
     {
@@ -129,9 +133,11 @@ class OrderController extends Controller
         }
         if($_GET['paytype'] =='1'){
             //支付宝支付
-            $this-> getalipay($_GET['oid']);
+             $this-> getalipay($_GET['oid']);
+
         }else if($_GET['paytype'] =='2'){
-            $this-> getWexinpay($_GET['oid']);
+             $data = $this-> getWexinpay($_GET['oid']);
+             return view('weixin.test',$data);
         }
     }
     //支付宝支付
@@ -205,4 +211,163 @@ class OrderController extends Controller
 //        $pay_time = strtotime($data['gmt_payment']);
 //        DB::table('api_order')->where('order_no',$data['out_trade_no'])->update(['pay_time'=>$pay_time]);
     }
+
+    //微信支付
+    public function  getWexinpay($oid)
+    {
+        $info = DB::table('shop_order')->where(['order_no'=>$oid])->first();
+        if(empty($info)){
+            header('Refresh:3;url=orderlist');
+            echo "订单不存在，3秒将跳转至订单页";
+        }
+        //组合参数
+        $total_fee = 1; //用户要支付的金额  1分
+        //必填参数
+        $order_info =[
+            'appid' => 'wxd5af665b240b75d4', //公众帐号id
+            'mch_id' => '1500086022', //商户id
+            'nonce_str'=> Str::random(16), //随机的字符串
+            'sign_type' => 'MD5', //签名类型
+            'body' => '测试微信支付-'.mt_rand(1111,9999).Str::random(6), //商品简单描述，
+            'out_trade_no' => $oid, //订单
+            'total_fee' => $total_fee,//订单总金额
+            'spbill_create_ip' => $_SERVER['REMOTE_ADDR'], //客户端ip
+            'notify_url' => $this-> notify_url, //通知回调地址
+            'trade_type' => 'NATIVE' // 交易类型
+        ];
+         $this-> values = $order_info;
+        //生成签名
+        $this ->Setsign();
+        $xml = $this-> Toxml(); //将数组转化为xml格式
+        //发送请求
+        $res =$this ->postXmlCurl($xml,$this->url,$useCert = false, $second = 30 );
+
+        $data =  simplexml_load_string($res);
+        $data = [
+            'code_url'  => $data->code_url,
+            'oid' => $oid
+        ];
+        return $data;
+    }
+    public function  Setsign()
+    {
+        $sign = $this ->MakeSign();
+        $this ->values['sign'] = $sign;
+        return $sign;
+    }
+    //签名
+    public function MakeSign()
+    {
+        //签名步骤一：按字典序排序参数
+        ksort($this-> values);
+        $string = $this -> ToUrlParams();
+        //签名步骤二：在string后加入KEY
+        $string = $string . "&key=".'7c4a8d09ca3762af61e59520943AB26Q';
+        //签名步骤三：MD5加密
+        $string = md5($string);
+        //签名步骤四：所有字符转为大写
+        $result = strtoupper($string);
+        return $result;
+    }
+    public  function  ToUrlParams()
+    {
+        $buff = "";
+        foreach($this-> values as $k=>$v)
+        {
+            //把组成参数拼接上
+            if($k != 'sign' && $v != "" && !is_array($v)){
+                $buff .= $k. "=" . $v . "&";
+            }
+        }
+        $buff = trim($buff,'&');
+        return $buff;
+    }
+    //xml
+    protected function Toxml()
+    {
+        if(!is_array($this->values) || count($this->values) <= 0)
+        {
+            die("数组数据异常！");
+        }
+        $xml = "<xml>";
+        foreach ($this-> values as $key=>$val)
+        {
+            // var_dump($val);echo "<hr>";
+            //检测变量是否是数字 字符串
+            if (is_numeric($val)){
+                $xml.="<".$key.">".$val."</".$key.">";
+            }else{
+                $xml.="<".$key."><![CDATA[".$val."]]></".$key.">";
+            }
+        }
+        $xml.="</xml>";
+        return $xml;
+    }
+    //curl
+    private  function postXmlCurl($xml, $url, $useCert = false, $second = 30)
+    {
+        $ch = curl_init();
+        //设置超时
+        curl_setopt($ch, CURLOPT_TIMEOUT, $second);
+        curl_setopt($ch,CURLOPT_URL, $url);
+        curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,TRUE);
+        curl_setopt($ch,CURLOPT_SSL_VERIFYHOST,2);//严格校验
+        //设置header
+        curl_setopt($ch, CURLOPT_HEADER, FALSE);
+        //要求结果为字符串且输出到屏幕上
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        //post提交方式
+        curl_setopt($ch, CURLOPT_POST, TRUE);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
+        //运行curl
+        $data = curl_exec($ch);
+        //返回结果
+        if($data){
+            curl_close($ch);
+            return $data;
+        } else {
+            $error = curl_errno($ch);
+            curl_close($ch);
+            die("curl出错，错误码:$error");
+        }
+    }
+
+    //支付成功改变订单状态
+    public function paystatus()
+    {
+        $oid = $_GET['oid'];
+        $info = DB::table('shop_order')->where(['order_no'=>$oid])->first();
+        $response = [];
+        if($info){
+            if($info->pay_time>0){      //已支付
+                $response = [
+                    'status'    => 0,       // 0 已支付
+                    'msg'       => 'ok'
+                ];
+            }
+            //echo '<pre>';print_r($info->toArray());echo '</pre>';
+        }else{
+            die("订单不存在");
+        }
+        die(json_encode($response));
+        // echo $o_id;
+    }
+
+    //微信支付成功回调
+    public function wxnotify()
+    {
+        $data = file_get_contents('php://input');
+        //记录日志
+        $log_str = date('Y-m-d H:i:s') . "\n" . $data . "\n<<<<<<<";
+        is_dir('logs') or mkdir('logs', 0777, true);
+        file_put_contents('logs/wx_pay_notice.log',$log_str,FILE_APPEND);
+//        $xml = simplexml_load_string($data);
+
+//        $pay_time = strtotime($xml->time_end);
+//        order::where(['order_no'=>$xml->out_trade_no])->update(['pay_amount'=>$xml->cash_fee,'pay_time'=>$pay_time]);
+//        $response = '<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>';
+//        echo $response;
+    }
 }
+
+

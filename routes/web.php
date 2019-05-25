@@ -35,3 +35,7 @@ Route::get('/orhtml', 'order\OrderController@orhtml');
 Route::get('/alipay', 'order\OrderController@alipay');
 //支付宝支付成功回调
 Route::get('/succuess', 'order\OrderController@succuess');
+//ajax轮询改变支付状态
+Route::get('/paystatus', 'order\OrderController@paystatus');
+//微信支付成功回调
+Route::post('/wxnotify', 'order\OrderController@wxnotify');

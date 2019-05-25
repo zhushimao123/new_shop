@@ -49,9 +49,8 @@
     </div>
 </div>
 <!-- end navbar bottom -->
-
-
-
+<!-- menu -->
+<!-- end menu -->
 <!-- shop single -->
 <div class="pages section">
     <div class="container">

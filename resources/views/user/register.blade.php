@@ -116,7 +116,7 @@
                 return false;
             }
             $.ajax({
-                url:"http://www.newshop.com/regdo",
+                url:"http://vm.them.com/regdo",
                 data:{user_name:user_name,user_email:user_email,user_pwd:user_pwd},
                 dataType:'json',
                 type:'post',
@@ -127,7 +127,7 @@
                         alert(res.msg);
                     }else{
                         alert('注册成功');
-                        location.href="http://www.newshop.com/login";
+                        location.href="http://vm.them.com/login";
                     }
                 }
             });

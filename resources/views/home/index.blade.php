@@ -50,11 +50,6 @@
     </div>
 </div>
 <!-- end navbar bottom -->
-
-
-
-
-
 <!-- slider -->
 <div class="slider">
 
@@ -152,14 +147,14 @@
             <div class="divider-top"></div>
             <div class="divider-bottom"></div>
         </div>
-        <div class="row margin-bottom">
+        <div class="row">
             @foreach($new_shop as $key=>$val)
                 <div class="col s6">
-                    <div class="content">
-                        <a href='detil?goods_id={{$val->goods_id}}'><img src="{{'/uploads/goodsimg/'.$val->goods_img }}" alt=""></a>
+                    <div class="">
+                        <a href='detil?goods_id={{$val->goods_id}}'><img src="{{'/uploads/goodsimg/'.$val->goods_img  }}" alt="" height="280"></a>
                         <h6><a href='detil?goods_id={{$val->goods_id}}'>{{$val-> goods_name}}</a></h6>
                         <div class="price">
-                            ${{$val -> goods_price}} <span>${{$val -> goods_bzprice}}</span>&nbsp;&nbsp;&nbsp;&nbsp;<b>❤</b>
+                            <b> ${{$val -> goods_price}}</b> <span>|${{$val -> goods_bzprice}}</span>&nbsp;&nbsp;&nbsp;&nbsp;<b>❤</b>
                         </div>
                     </div>
                 </div>
@@ -193,11 +188,11 @@
         <div class="row">
             @foreach($shop as $k=>$v)
             <div class="col s6"  >
-                <div class="content">
-                    <a href='detil?goods_id={{$v->goods_id}}'>  <img src="{{'/uploads/goodsimg/'.$v->goods_img }}" alt=""></a>
+                <div class="">
+                    <a href='detil?goods_id={{$v ->goods_id}}'><img src="{{'/uploads/goodsimg/'.$v ->goods_img  }}" alt="" height="280"></a>
                     <h6> <a href='detil?goods_id={{$v->goods_id}}'>{{$v-> goods_name}}</a></h6>
                     <div class="price">
-                        ${{$v-> goods_price}} <span>${{$v-> goods_bzprice}}</span>&nbsp;&nbsp;&nbsp;&nbsp;<b>❤</b>
+                        <b> ${{$v -> goods_price}}</b> <span>|${{$v -> goods_bzprice}}</span>&nbsp;&nbsp;&nbsp;&nbsp;<b>❤</b>
                     </div>
                 </div>
             </div>

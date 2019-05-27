@@ -41,15 +41,15 @@ Route::get('/order', 'order\OrderController@order');
 
 
 //确认结算
-Route::get('/orderdo', 'order\OrderController@orderdo')->middleware('checkLogin');
+Route::get('/orderdo', 'order\OrderController@orderdo');
 //订单页面
-Route::get('/orhtml', 'order\OrderController@orhtml')->middleware('checkLogin');
+Route::get('/orhtml', 'order\OrderController@orhtml');
 //支付宝支付
-Route::get('/alipay', 'order\OrderController@alipay')->middleware('checkLogin');
+Route::get('/alipay', 'order\OrderController@alipay');
 //支付宝支付成功回调
-Route::get('/succuess', 'order\OrderController@succuess')->middleware('checkLogin');
+Route::get('/succuess', 'order\OrderController@succuess');
 //支付宝支付成功异步回调
-Route::post('/alipayNotify', 'order\OrderController@alipayNotify')->middleware('checkLogin');
+Route::post('/alipayNotify', 'order\OrderController@alipayNotify');
 Route::get('/succuess', 'order\OrderController@succuess');
 //支付宝支付成功异步回调
 Route::post('/alipayNotify', 'order\OrderController@alipayNotify');

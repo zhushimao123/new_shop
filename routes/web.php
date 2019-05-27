@@ -60,3 +60,7 @@ Route::post('/alipayNotify', 'order\OrderController@alipayNotify');
 Route::get('/paystatus', 'order\OrderController@paystatus');
 //微信支付成功回调
 Route::post('/wxnotify', 'order\OrderController@wxnotify');
+//获取url
+Route::get('code', 'weixin\weixincontroller@code');
+//获取code
+Route::get('getcode', 'weixin\weixincontroller@getcode');

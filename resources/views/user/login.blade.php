@@ -82,6 +82,7 @@
                     </div>
                     <a href=""><h6>Forgot Password ?</h6></a>
                     <a href="" class="btn button-default" id="butt">LOGIN</a>
+                    <a href="/code" class="btn button-default"><i class="fa fa-sign-out"></i>微信授权登陆</a>
                 </form>
             </div>
         </div>

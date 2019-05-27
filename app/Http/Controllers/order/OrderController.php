@@ -19,9 +19,8 @@ class OrderController extends Controller
 
     public function order()
     {
-
         $session_name=Session::get('user_name');
-        $goodsinfo = DB::table('shop_cart')->where(['user_id'=>Session::get('user_id')])->get();
+
         $data=cartmodel::where(['cart_status'=>1])->select()->paginate(6);
         $count=0;
         foreach ($data as $k => $v){
@@ -29,6 +28,7 @@ class OrderController extends Controller
             $count= $count += $price;
         }
         $a=$data->count();
+        $goodsinfo = DB::table('shop_cart')->where(['user_id'=>Session::get('user_id')])->get();
        return view('order.order',['goodsinfo'=>$goodsinfo,'session_name'=>$session_name,'a'=>$a]);
     }
     //确认结算

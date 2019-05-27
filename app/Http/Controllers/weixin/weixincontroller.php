@@ -63,7 +63,7 @@ class weixincontroller extends Controller
                 'openid'=>$user_info['openid'],
                 'user_name'=>$user_info['nickname'],
             ];
-            $uid = WxUser::insertGetid($info);
+            $uid = User::insertGetid($info);
             //添加到微信用户表
             $info=[
                 'openid'=>$user_info['openid'],

@@ -377,16 +377,9 @@ class OrderController extends Controller
 
 //        $pay_time = strtotime($xml->time_end);
         //支付成功
-<<<<<<< HEAD
         DB::table('shop_order')->where(['order_no'=>$xml->out_trade_no])->update(['pay_amount'=>$xml->cash_fee,'pay_time'=>time()]);
         $response = '<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>';
         echo $response;
-=======
-        DB::table('shop_order')->where(['order_no'=>$xml->out_trade_no])->update(['pay_time'=>time()]);
-//        $response = '<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>';
-//        echo $response;
->>>>>>> save
-
     }
 }
 

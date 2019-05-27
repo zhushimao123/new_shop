@@ -40,6 +40,7 @@
         <div class="col s4">
             <div class="bar-center">
                 <a href="/cartdet"><i class="fa fa-shopping-basket"></i></a>
+                <span>{{$a}}</span>
             </div>
         </div>
         <div class="col s2">
@@ -112,7 +113,7 @@
                 return false;
             }
             $.ajax({
-                url:"http://vm.them.com/logindo",
+                url:"http://www.newshop.com/logindo",
                 data:{user_name:user_name,user_pwd:user_pwd},
                 dataType:'json',
                 type:'post',
@@ -123,7 +124,7 @@
                         alert(res.msg);
                     }else{
                         alert('登录成功');
-                        location.href="http://vm.them.com/";
+                        location.href="http://www.newshop.com/";
                     }
                 }
             });

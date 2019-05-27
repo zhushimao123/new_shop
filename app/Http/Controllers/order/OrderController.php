@@ -170,7 +170,7 @@ class OrderController extends Controller
         ];
         //公共参数
         $data = [
-            'app_id'   => '2016092600600197',
+            'app_id'   => '2016092700608889',
             'method'   => 'alipay.trade.wap.pay',
             'format'   => 'JSON',
             'charset'   => 'utf-8',

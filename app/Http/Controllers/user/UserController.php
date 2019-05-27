@@ -9,13 +9,21 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\StoreRegisterPost;
 use App\Http\Requests\StoreLoginPost;
+use App\Model\cartmodel;
 class UserController extends Controller
 {
     //注册首页
     public function register()
     {
         $session_name=Session::get('user_name');
-        return view('user/register',['session_name'=>$session_name]);
+        $data=cartmodel::where(['cart_status'=>1])->select()->paginate(6);
+        $count=0;
+        foreach ($data as $k => $v){
+            $price=$v->buy_number*$v->goods_price;
+            $count=$count+=$price;
+        }
+        $a=$data->count();
+        return view('user/register',['session_name'=>$session_name,'a'=>$a]);
     }
     //注册执行
     public function regdo(Request $request)
@@ -54,7 +62,14 @@ class UserController extends Controller
     public function login()
     {
         $session_name=Session::get('user_name');
-        return view('user/login',['session_name'=>$session_name]);
+        $data=cartmodel::where(['cart_status'=>1])->select()->paginate(6);
+        $count=0;
+        foreach ($data as $k => $v){
+            $price=$v->buy_number*$v->goods_price;
+            $count=$count+=$price;
+        }
+        $a=$data->count();
+        return view('user/login',['session_name'=>$session_name,'a'=>$a]);
     }
     //登录执行
     public function logindo(Request $request)
@@ -90,11 +105,7 @@ class UserController extends Controller
         $request->session()->forget('user_name');
         $s=Session::get('user_name');
         if(!$s){
-<<<<<<< HEAD
-            header('refresh:1;url=http://vm.them.com');
-=======
             return redirect()->to("http://www.newshop.com");
->>>>>>> b8424fc0ea9240100e8be9266f224115118d36dc
         }
     }
 }

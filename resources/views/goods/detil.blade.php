@@ -58,7 +58,6 @@
             <img src="{{'/uploads/goodsimg/'.$data['goods_img'] }}" alt="">
             <h5>{{$data['goods_name']}}</h5>
             <div class="price">${{$data['goods_price']}} <span>${{$data['goods_bzprice']}}</span></div>
-            <p>{{$data['goods_desc']}}</p>
             <button type="button" class="btn button-default" id="btu" goods_id="{{$data->goods_id}}">加入购物车</button>
         </div>
     </div>

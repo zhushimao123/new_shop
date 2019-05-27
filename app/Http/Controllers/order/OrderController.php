@@ -207,7 +207,7 @@ class OrderController extends Controller
     public function  succuess()
     {
         echo '支付成功：三秒后跳至首页';
-        header('refresh:2;url=/');
+        header('refresh:2;url=http://them.mneddx.com/');
     }
     //异步回调
     public function  alipayNotify()

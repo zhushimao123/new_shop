@@ -21,7 +21,7 @@ class OrderController extends Controller
     {
         $session_name=Session::get('user_name');
 
-        $goodsinfo = DB::table('shop_cart')->where(['user_id'=>1])->get();
+        $goodsinfo = DB::table('shop_cart')->where(['user_id'=>Session::get('user_id')])->get();
        return view('order.order',['goodsinfo'=>$goodsinfo,'session_name'=>$session_name]);
     }
     //确认结算
@@ -36,7 +36,7 @@ class OrderController extends Controller
            die(json_encode($response,JSON_UNESCAPED_UNICODE));
        }
         $goods_id = explode(',',$_GET['goods_id']);
-        $shopInfo = cartmodel::where(['user_id'=>1])->get();
+        $shopInfo = cartmodel::where(['user_id'=>Session::get('user_id')])->get();
         $countprice = 0;
         foreach ($shopInfo as $k=>$v)
         {
@@ -46,7 +46,7 @@ class OrderController extends Controller
         $orderInfo['order_amount'] = $countprice;
         $orderInfo['order_no'] = $this-> str();
         $orderInfo['pay_type'] = 1; //1 支付宝
-        $orderInfo['user_id'] =1;
+        $orderInfo['user_id'] =Session::get('user_id');
         $orderInfo['create_time']= time();
         $res1 = DB::table('shop_order')->insert($orderInfo);
         if(!$res1){
@@ -58,12 +58,12 @@ class OrderController extends Controller
         }
         $order_id = DB::getPdo()->lastInsertId($res1);
 //        var_dump($order_id);die;
-        $res2 = DB::table('shop_cart')->whereIn('goods_id',$goods_id)->where(['user_id'=>1])->get();
+        $res2 = DB::table('shop_cart')->whereIn('goods_id',$goods_id)->where(['user_id'=>Session::get('user_id')])->get();
         $goodsInfo = json_decode($res2,true);
         foreach ($goodsInfo as $k=> $v)
         {
             $goodsInfo[$k]['order_id'] =$order_id;
-            $goodsInfo[$k]['user_id'] = 1;
+            $goodsInfo[$k]['user_id'] = Session::get('user_id');
             $goodsInfo[$k]['create_time'] =time();
             $goodsInfo[$k]['update_time'] =time();
             $goodsInfo[$k]['goods_img'] = $v['img'];
@@ -83,7 +83,7 @@ class OrderController extends Controller
             die(json_encode($response,JSON_UNESCAPED_UNICODE));
         }
         //清空购物车
-        $res3 = DB::table('shop_cart')->where(['user_id'=> 1])->delete();
+        $res3 = DB::table('shop_cart')->where(['user_id'=>Session::get('user_id')])->delete();
         if(!$res3){
             $response = [
                 'errno'=> 'no',
@@ -172,7 +172,7 @@ class OrderController extends Controller
             'timestamp'   => date('Y-m-d H:i:s'),
             'version'   => '1.0',
             'notify_url'   => 'http://them.mneddx.com/alipayNotify',       //异步通知地址
-            'return_url'   => 'http://vm.them.com/succuess',      // 同步通知地址
+            'return_url'   => 'http://them.mneddx.com/succuess',      // 同步通知地址
             'biz_content'   => json_encode($bizcont),
         ];
         //拼接参数
@@ -219,8 +219,8 @@ class OrderController extends Controller
         file_put_contents('logs/alipay_notify',$log_str,FILE_APPEND);
         echo 'success';
         //TODO 验签 更新订单状态
-//        $pay_time = strtotime($data['gmt_payment']);
-//        DB::table('api_order')->where('order_no',$data['out_trade_no'])->update(['pay_time'=>$pay_time]);
+        $pay_time = strtotime($data['gmt_payment']);
+        DB::table('shop_order')->where(['order_no'=>$data['out_trade_no']])->update(['pay_time'=> $pay_time,'pay_status'=>2]);
 
     }
 
@@ -255,6 +255,16 @@ class OrderController extends Controller
         $res =$this ->postXmlCurl($xml,$this->url,$useCert = false, $second = 30 );
 
         $data =  simplexml_load_string($res);
+        echo 'return_code: '.$data->return_code;echo '<br>';
+        echo 'return_msg: '.$data->return_msg;echo '<br>';
+        echo 'appid: '.$data->appid;echo '<br>';
+        echo 'mch_id: '.$data->mch_id;echo '<br>';
+        echo 'nonce_str: '.$data->nonce_str;echo '<br>';
+        echo 'sign: '.$data->sign;echo '<br>';
+        echo 'result_code: '.$data->result_code;echo '<br>';
+        echo 'prepay_id: '.$data->prepay_id;echo '<br>';
+        echo 'trade_type: '.$data->trade_type;echo '<br>';
+        echo 'code_url: '.$data->code_url;echo '<br>';
         $data = [
             'code_url'  => $data->code_url,
             'oid' => $oid

@@ -46,7 +46,8 @@ class GoodsdetialController extends Controller
             }
             return json_encode($response,JSON_UNESCAPED_UNICODE);
         }else{
-            $user_id=1;
+            $user_id=Session::get('user_id');
+//            var_dump($user_id);die;
            $buy_number=1;
             $create_time=time();
             $data=[

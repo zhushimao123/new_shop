@@ -21,13 +21,17 @@ Route::post('/logindo', 'user\UserController@logindo');
 //退出
 Route::get('/logout', 'user\UserController@logout');
 //商品详情
-Route::get('/detil', 'Goods\GoodsdetialController@detial');
+Route::get('/detil', 'Goods\GoodsdetialController@detial')->middleware('checkLogin');
+//加入购物车
 Route::post('/cart', 'Goods\GoodsdetialController@cart');
-Route::get('/cartdet', 'Cart\CartController@cartdet');
+//购物车列表
+Route::get('/cartdet', 'Cart\CartController@cartdet')->middleware('checkLogin');
+//删除
+Route::post('/delete', 'Cart\CartController@delete');
 
 
 //收藏列表
-Route::get('/wish', 'Collection\CollectionController@colle_list');
+Route::get('/wish', 'Collection\CollectionController@colle_list')->middleware('checkLogin');
 //点击收藏
 Route::get('/getConlle/{id}', 'Collection\CollectionController@getConlle');
 
@@ -37,14 +41,12 @@ Route::get('/contact', 'contact\ContactController@contact')->middleware('checkLo
 Route::post('/sendmail', 'contact\ContactController@sendmail');
 //商品列表
 Route::get('/product', 'goodslist\GoodsListController@goodslist');
-
-Route::post('/delete', 'Cart\CartController@delete');
 //结算
-Route::get('/order', 'order\OrderController@order');
+Route::get('/order', 'order\OrderController@order')->middleware('checkLogin');
 
 
 //确认结算
-Route::get('/orderdo', 'order\OrderController@orderdo');
+Route::get('/orderdo', 'order\OrderController@orderdo')->middleware('checkLogin');
 //订单页面
 Route::get('/orhtml', 'order\OrderController@orhtml');
 //支付宝支付

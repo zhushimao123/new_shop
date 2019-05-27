@@ -29,7 +29,7 @@ class CartController extends Controller
         }
 
 
-        $data=cartmodel::where(['cart_status'=>1])->select()->paginate(6);
+        $data=cartmodel::where(['user_id'=>Session::get('user_id'),'cart_status'=>1])->select()->paginate(6);
         $count=0;
         foreach ($data as $k => $v){
         $price=$v->buy_number*$v->goods_price;

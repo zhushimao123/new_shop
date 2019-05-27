@@ -17,7 +17,7 @@ class CheckLogin
     {
         //echo Session::get('user_name');die;
         if(Session::get('user_name')==null){
-            return redirect()->to("http://them.mneddx.com/login");
+            return redirect()->to("http://vm.them.com/login");
         }
         return $next($request);
     }

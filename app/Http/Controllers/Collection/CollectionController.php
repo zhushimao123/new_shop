@@ -13,6 +13,11 @@ class CollectionController extends Controller
     public function colle_list()
     {
         $uid = session('user_id');
+        if($uid==''){
+            echo "请先登录";
+            header('refresh:1;url=/login');
+            die;
+        }
         $arr = Praise::where('admin_id',$uid)->get();
         if($arr){
             $info = [];

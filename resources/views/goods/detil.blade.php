@@ -96,6 +96,9 @@
                     method:'get',
                     success:function(res){
                         alert(res.msg);
+                        if(res.err==3){
+                            location.href="/login";
+                        }
                     }
                 })
             })

@@ -26,7 +26,10 @@ Route::post('/cart', 'Goods\GoodsdetialController@cart');
 Route::get('/cartdet', 'Cart\CartController@cartdet');
 
 
-
+//收藏列表
+Route::get('/wish', 'Collection\CollectionController@colle_list')->middleware('checkLogin');
+//点击收藏
+Route::get('/getConlle/{id}', 'Collection\CollectionController@getConlle')->middleware('checkLogin');
 
 //联系我们
 Route::get('/contact', 'contact\ContactController@contact')->middleware('checkLogin');

@@ -90,11 +90,7 @@ class UserController extends Controller
         $request->session()->forget('user_name');
         $s=Session::get('user_name');
         if(!$s){
-<<<<<<< HEAD
             header('refresh:1;url=http://vm.them.com');
-=======
-            return redirect()->to("http://www.newshop.com");
->>>>>>> b8424fc0ea9240100e8be9266f224115118d36dc
         }
     }
 }

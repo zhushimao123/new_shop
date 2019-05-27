@@ -60,6 +60,7 @@
             <div class="price">${{$data['goods_price']}} <span>${{$data['goods_bzprice']}}</span></div>
             <p>{{$data['goods_desc']}}</p>
             <button type="button" class="btn button-default" id="btu" goods_id="{{$data->goods_id}}">加入购物车</button>
+            <button type="button" class="btn button-default" id="shc" goods_id="{{$data->goods_id}}">点击加入收藏</button>
         </div>
     </div>
 
@@ -86,8 +87,19 @@
                     }
                 })
             })
-
+            //收藏
+            $('#shc').click(function(){
+                var id = $(this).attr('goods_id');
+                $.ajax({
+                    url:"/getConlle/"+id,
+                    dataType:'json',
+                    method:'get',
+                    success:function(res){
+                        alert(res.msg);
+                    }
+                })
+            })
         })
-            </script>
+    </script>
 </body>
 </html>

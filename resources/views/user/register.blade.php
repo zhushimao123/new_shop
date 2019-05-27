@@ -117,11 +117,7 @@
                 return false;
             }
             $.ajax({
-<<<<<<< HEAD
-                url:"http://them.mneddx.com/regdo",
-=======
                 url:"/regdo",
->>>>>>> 3bd5b49886da64e9c4370b7dbc986090da28fb06
                 data:{user_name:user_name,user_email:user_email,user_pwd:user_pwd},
                 dataType:'json',
                 type:'post',
@@ -132,11 +128,7 @@
                         alert(res.msg);
                     }else{
                         alert('注册成功');
-<<<<<<< HEAD
-                        location.href="http://them.mneddx.com/login";
-=======
                         location.href="/login";
->>>>>>> 3bd5b49886da64e9c4370b7dbc986090da28fb06
                     }
                 }
             });

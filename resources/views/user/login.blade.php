@@ -113,11 +113,7 @@
                 return false;
             }
             $.ajax({
-<<<<<<< HEAD
-                url:"http://them.mneddx.com/logindo",
-=======
                 url:"/logindo",
->>>>>>> 3bd5b49886da64e9c4370b7dbc986090da28fb06
                 data:{user_name:user_name,user_pwd:user_pwd},
                 dataType:'json',
                 type:'post',
@@ -128,11 +124,7 @@
                         alert(res.msg);
                     }else{
                         alert('登录成功');
-<<<<<<< HEAD
-                        location.href="http://them.mneddx.com";
-=======
                         location.href="/";
->>>>>>> 3bd5b49886da64e9c4370b7dbc986090da28fb06
                     }
                 }
             });

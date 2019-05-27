@@ -32,11 +32,8 @@
             <a href="/"><i class="fa fa-home"></i></a>
         </div>
         <div class="col s2">
-<<<<<<< HEAD
-            <a href="wish"><i class="fa fa-heart"></i></a>
-=======
+
             <a href="/wish"><i class="fa fa-heart"></i></a>
->>>>>>> 3bd5b49886da64e9c4370b7dbc986090da28fb06
         </div>
         <div class="col s4">
             <div class="bar-center">

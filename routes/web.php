@@ -18,6 +18,8 @@ Route::post('/regdo', 'user\UserController@regdo');
 //登录
 Route::get('/login', 'user\UserController@login');
 Route::post('/logindo', 'user\UserController@logindo');
+//手机验证码
+Route::post('/telCode', 'user\UserController@telCode');
 //退出
 Route::get('/logout', 'user\UserController@logout');
 //商品详情

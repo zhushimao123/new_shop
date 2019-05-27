@@ -75,7 +75,7 @@
                 @endif
                 <form class="col s12">
                     <div class="input-field">
-                        <input type="text" class="validate" placeholder="USERNAME" name="user_name" id="user_name" required>
+                        <input type="text" class="validate" placeholder="USERNAME | TEL" name="user_name" id="user_name" required>
                     </div>
                     <div class="input-field">
                         <input type="password" class="validate" placeholder="PASSWORD" name="user_pwd" id="user_pwd" required>

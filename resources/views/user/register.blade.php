@@ -79,6 +79,13 @@
                         <input type="email" placeholder="EMAIL" class="validate" name="user_email" id="user_email" required>
                     </div>
                     <div class="input-field">
+                        <input type="tel" placeholder="TEL" class="validate" name="user_tel" id="user_tel" required>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" placeholder="CODE" class="validate" name="tel_code" id="tel_code" required>
+                        <div class="btn button-default" id="send_tel">CODE</div>
+                    </div>
+                    <div class="input-field">
                         <input type="password" placeholder="PASSWORD" class="validate" name="user_pwd" id="user_pwd" required>
                     </div>
                     <div class="btn button-default" id="butt">REGISTER</div>
@@ -100,10 +107,39 @@
 </html>
 <script>
     $(function () {
+        $('#send_tel').click(function () {
+            var user_tel=$('#user_tel').val();
+            var reg=/^1[3,4,5,7,8]\d{9}$/;
+           if(user_tel==''){
+               alert('手机号不为空哦');
+               return false;
+           }else if(!reg.test(user_tel)){
+                alert('输入正确格式的手机号哦');
+                return false;
+           }
+           $.ajax({
+               url:'/telCode',
+               dataType:'json',
+               data:{user_tel:user_tel},
+               type:'post',
+               async:false,
+               success:function (res) {
+                   console.log(res);
+                   if(res.code==2){
+                       alert(res.msg);
+                   }else{
+                       alert('已发送请查收哦');
+                   }
+               }
+           })
+        });
         $('#butt').click(function () {
             var user_name=$('#user_name').val();
             var user_email=$('#user_email').val();
             var user_pwd=$('#user_pwd').val();
+            var tel_code=$('#tel_code').val();
+            var user_tel=$('#user_tel').val();
+            var reg=/^1[3,4,5,7,8]\d{9}$/;
             if(user_name==''){
                 alert('用户名不为空哦');
                 return false;
@@ -112,13 +148,24 @@
                 alert('邮箱不为空哦');
                 return false;
             }
+            if(user_tel==''){
+                alert('手机号不为空哦');
+                return false;
+            }else if(!reg.test(user_tel)){
+                alert('输入正确格式的手机号哦');
+                return false;
+            }
+            if(tel_code==''){
+                alert('验证码不为空哦');
+                return false;
+            }
             if(user_pwd==''){
                 alert('密码不为空哦');
                 return false;
             }
             $.ajax({
                 url:"/regdo",
-                data:{user_name:user_name,user_email:user_email,user_pwd:user_pwd},
+                data:{user_name:user_name,user_email:user_email,user_pwd:user_pwd,user_tel:user_tel,tel_code:tel_code},
                 dataType:'json',
                 type:'post',
                 async:false,

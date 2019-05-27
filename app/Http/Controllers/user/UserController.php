@@ -9,13 +9,16 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\StoreRegisterPost;
 use App\Http\Requests\StoreLoginPost;
+use App\Model\cartmodel;
 class UserController extends Controller
 {
     //注册首页
     public function register()
     {
         $session_name=Session::get('user_name');
-        return view('user/register',['session_name'=>$session_name]);
+        $data=cartmodel::where(['cart_status'=>1])->select()->paginate(6);
+        $a=$data->count();
+        return view('user/register',['session_name'=>$session_name,'a'=>$a]);
     }
     //注册执行
     public function regdo(Request $request)
@@ -54,7 +57,9 @@ class UserController extends Controller
     public function login()
     {
         $session_name=Session::get('user_name');
-        return view('user/login',['session_name'=>$session_name]);
+        $data=cartmodel::where(['cart_status'=>1])->select()->paginate(6);
+        $a=$data->count();
+        return view('user/login',['session_name'=>$session_name,'a'=>$a]);
     }
     //登录执行
     public function logindo(Request $request)
@@ -87,11 +92,17 @@ class UserController extends Controller
     //退出
     public function logout(Request $request)
     {
-        $request->session()->forget('user_name');
+        $request->session()->forget(['user_id','user_name']);
         $s=Session::get('user_name');
+<<<<<<< HEAD
         if(!$s){
             header('refresh:1;url=http://them.mneddx.com');
             return redirect()->to("http://them.mneddx.com");
+=======
+        $s1=Session::get('user_id');
+        if(!$s&&!$s1){
+            return redirect()->to("/");
+>>>>>>> 3bd5b49886da64e9c4370b7dbc986090da28fb06
         }
     }
 }

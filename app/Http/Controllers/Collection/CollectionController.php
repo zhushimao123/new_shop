@@ -7,14 +7,16 @@ use App\Http\Controllers\Controller;
 use App\model\goods;
 use Illuminate\Support\Facades\Session;
 use App\model\Praise;
+use App\Model\cartmodel;
 class CollectionController extends Controller
 {
     //收藏列表
     public function colle_list()
     {
-        $uid = session('user_id');
+        $uid = Session::get('user_id');
+        $session_name=Session('user_name');
         if($uid==''){
-            echo "请先登录";
+            echo "<script>alert('请先登录')</script>";
             header('refresh:1;url=/login');
             die;
         }
@@ -24,8 +26,12 @@ class CollectionController extends Controller
             foreach($arr as $k=>$v){
                 $info[]=goods::where('goods_id',$v->essay_id)->first()->toArray();
             }
+
+            $data=cartmodel::where(['cart_status'=>1])->select()->paginate(6);
+            $a=$data->count();
+
 //            print_r($info);
-            return view('collection.collelist',['err'=>1,'msg'=>$info]);
+            return view('collection.collelist',['err'=>1,'msg'=>$info,'a'=>$a,'session_name'=>$session_name]);
         }else{
             $arr1 = [
                 'err'=>2,

@@ -49,6 +49,8 @@
     </div>
 </div>
 
+<!-- end navbar bottom -->
+
 <!-- slider -->
 <div class="slider">
 

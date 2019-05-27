@@ -32,7 +32,11 @@
             <a href="/"><i class="fa fa-home"></i></a>
         </div>
         <div class="col s2">
+<<<<<<< HEAD
             <a href="wish"><i class="fa fa-heart"></i></a>
+=======
+            <a href="/wish"><i class="fa fa-heart"></i></a>
+>>>>>>> 3bd5b49886da64e9c4370b7dbc986090da28fb06
         </div>
         <div class="col s4">
             <div class="bar-center">
@@ -58,7 +62,6 @@
             <img src="{{'/uploads/goodsimg/'.$data['goods_img'] }}" alt="">
             <h5>{{$data['goods_name']}}</h5>
             <div class="price">${{$data['goods_price']}} <span>${{$data['goods_bzprice']}}</span></div>
-            <p>{{$data['goods_desc']}}</p>
             <button type="button" class="btn button-default" id="btu" goods_id="{{$data->goods_id}}">加入购物车</button>
             <button type="button" class="btn button-default" id="shc" goods_id="{{$data->goods_id}}">点击加入收藏</button>
         </div>

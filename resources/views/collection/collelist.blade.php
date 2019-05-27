@@ -40,15 +40,23 @@
 <!-- side nav right-->
 <div class="side-nav-panel-right">
     <ul id="slide-out-right" class="side-nav side-nav-panel collapsible">
-        <li class="profil">
-            <img src="img/profile.jpg" alt="">
-            <h2>John Doe</h2>
-        </li>
-        <li><a href="setting.html"><i class="fa fa-cog"></i>Settings</a></li>
-        <li><a href="about-us.html"><i class="fa fa-user"></i>About Us</a></li>
-        <li><a href="contact.html"><i class="fa fa-envelope-o"></i>Contact Us</a></li>
-        <li><a href="login.html"><i class="fa fa-sign-in"></i>Login</a></li>
-        <li><a href="register.html"><i class="fa fa-user-plus"></i>Register</a></li>
+
+        @if($session_name==null)
+            <li class="profil">
+                <img src="img/profile.jpg" alt="">
+                <h2>John Doe</h2>
+            </li>
+            <li><a href="/contact"><i class="fa fa-user"></i>About Us</a></li>
+            <li><a href="/login"><i class="fa fa-sign-in"></i>Login</a></li>
+            <li><a href="/register"><i class="fa fa-user-plus"></i>Register</a></li>
+        @else
+            <li class="profil">
+                <img src="img/下载.jpg" alt="">
+                <h2>欢迎<font color="red">{{$session_name}}</font>登录</h2>
+            </li>
+            <li><a href="/contact"><i class="fa fa-user"></i>About Us</a></li>
+            <li><a href="/logout"><i class="fa fa-sign-out"></i>Logout</a></li>
+        @endif
     </ul>
 </div>
 <!-- end side nav right-->
@@ -64,8 +72,8 @@
         </div>
         <div class="col s4">
             <div class="bar-center">
-                <a href="#animatedModal" id="cart-menu"><i class="fa fa-shopping-basket"></i></a>
-                <span>2</span>
+                <a href="/cartdet"><i class="fa fa-shopping-basket"></i></a>
+                <span>{{$a}}</span>
             </div>
         </div>
         <div class="col s2">

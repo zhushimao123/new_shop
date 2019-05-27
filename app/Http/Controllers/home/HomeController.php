@@ -13,11 +13,6 @@ class HomeController extends Controller
     {
         $session_name=Session::get('user_name');
         $data=cartmodel::where(['cart_status'=>1])->select()->paginate(6);
-        $count=0;
-        foreach ($data as $k => $v){
-            $price=$v->buy_number*$v->goods_price;
-            $count=$count+=$price;
-        }
         $a=$data->count();
         //新品
         $new_shop = goods::where(['goods_new'=>1])->limit(4)->get();

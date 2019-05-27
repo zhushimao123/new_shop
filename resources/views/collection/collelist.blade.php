@@ -2,7 +2,7 @@
 <html lang="zxx">
 <head>
     <meta charset="UTF-8">
-    <title>Mstore - @yield('title')</title>
+    <title>Mstore - Online Shop Mobile Template</title>
     <meta name="viewport" content="width=device-width, initial-scale=1  maximum-scale=1 user-scalable=no">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -28,7 +28,7 @@
 <div class="navbar-top">
     <!-- site brand	 -->
     <div class="site-brand">
-        <a href="/"><h1>Mstore</h1></a>
+        <a href="index.html"><h1>Mstore</h1></a>
     </div>
     <!-- end site brand	 -->
     <div class="side-nav-panel-right">
@@ -37,8 +37,54 @@
 </div>
 <!-- end navbar top -->
 
-@yield('content')
+<!-- side nav right-->
+<div class="side-nav-panel-right">
+    <ul id="slide-out-right" class="side-nav side-nav-panel collapsible">
 
+        @if($session_name==null)
+            <li class="profil">
+                <img src="img/profile.jpg" alt="">
+                <h2>John Doe</h2>
+            </li>
+            <li><a href="/contact"><i class="fa fa-user"></i>About Us</a></li>
+            <li><a href="/login"><i class="fa fa-sign-in"></i>Login</a></li>
+            <li><a href="/register"><i class="fa fa-user-plus"></i>Register</a></li>
+        @else
+            <li class="profil">
+                <img src="img/下载.jpg" alt="">
+                <h2>欢迎<font color="red">{{$session_name}}</font>登录</h2>
+            </li>
+            <li><a href="/contact"><i class="fa fa-user"></i>About Us</a></li>
+            <li><a href="/logout"><i class="fa fa-sign-out"></i>Logout</a></li>
+        @endif
+    </ul>
+</div>
+<!-- end side nav right-->
+
+<!-- navbar bottom -->
+<div class="navbar-bottom">
+    <div class="row">
+        <div class="col s2">
+            <a href="/"><i class="fa fa-home"></i></a>
+        </div>
+        <div class="col s2">
+            <a href="/wish"><i class="fa fa-heart"></i></a>
+        </div>
+        <div class="col s4">
+            <div class="bar-center">
+                <a href="/cartdet"><i class="fa fa-shopping-basket"></i></a>
+                <span>{{$a}}</span>
+            </div>
+        </div>
+        <div class="col s2">
+            <a href="/contact"><i class="fa fa-envelope-o"></i></a>
+        </div>
+        <div class="col s2">
+            <a href="#animatedModal2" id="nav-menu"><i class="fa fa-bars"></i></a>
+        </div>
+    </div>
+</div>
+<!-- end navbar bottom -->
 
 <!-- menu -->
 <div class="menus" id="animatedModal2">
@@ -81,7 +127,7 @@
             </div>
             <div class="row">
                 <div class="col s4">
-                    <a href="/wishlist" class="button-link">
+                    <a href="/wish" class="button-link">
                         <div class="menu-link">
                             <div class="icon">
                                 <i class="fa fa-heart"></i>
@@ -91,7 +137,7 @@
                     </a>
                 </div>
                 <div class="col s4">
-                    <a href="/cartdet" class="button-link">
+                    <a href="/cart" class="button-link">
                         <div class="menu-link">
                             <div class="icon">
                                 <i class="fa fa-shopping-cart"></i>
@@ -101,7 +147,7 @@
                     </a>
                 </div>
                 <div class="col s4">
-                    <a href="/order" class="button-link">
+                    <a href="checkout.html" class="button-link">
                         <div class="menu-link">
                             <div class="icon">
                                 <i class="fa fa-credit-card"></i>
@@ -256,6 +302,40 @@
                         </div>
                     </div>
                     <div class="divider"></div>
+                    <div class="cart-2">
+                        <div class="row">
+                            <div class="col s5">
+                                <img src="img/cart-menu2.png" alt="">
+                            </div>
+                            <div class="col s7">
+                                <h5><a href="">Fashion Men's</a></h5>
+                            </div>
+                        </div>
+                        <div class="row quantity">
+                            <div class="col s5">
+                                <h5>Quantity</h5>
+                            </div>
+                            <div class="col s7">
+                                <input value="1" type="text">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s5">
+                                <h5>Price</h5>
+                            </div>
+                            <div class="col s7">
+                                <h5>$20</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s5">
+                                <h5>Action</h5>
+                            </div>
+                            <div class="col s7">
+                                <div class="action"><i class="fa fa-trash"></i></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="total">
                     <div class="row">
@@ -283,12 +363,125 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn button-default">结算</button>
+                <button class="btn button-default">Process to Checkout</button>
             </div>
         </div>
     </div>
 </div>
 <!-- end cart menu -->
+
+<!-- wishlist -->
+<div class="wishlist section">
+    <div class="container">
+        <div class="pages-head">
+            <h3>WISHLIST</h3>
+        </div>
+        <div class="content">
+            @if($err==1)
+                @foreach($msg as $k=>$v)
+                <div class="cart-1">
+                    <div class="row">
+                        <div class="col s5">
+                            <h5>Image</h5>
+                        </div>
+                        <div class="col s7">
+                            <img src="uploads/goodsimg/{{$v['goods_img']}}" alt="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s5">
+                            <h5>Name</h5>
+                        </div>
+                        <div class="col s7">
+                            <h5><a href="">{{$v['goods_name']}}</a></h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s5">
+                            <h5>Stock Status</h5>
+                        </div>
+                        <div class="col s7">
+                            <h5>In Stock</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s5">
+                            <h5>Price</h5>
+                        </div>
+                        <div class="col s7">
+                            <h5>${{$v['goods_price']}}</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s5">
+                            <h5>Action</h5>
+                        </div>
+                        <div class="col s7">
+                            <h5><i class="fa fa-trash"></i></h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col 12">
+                            <button class="btn button-default">SEND TO CART</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                @endforeach
+            @else
+                <h3 align="center">该用户暂无收藏商品</h3>
+            @endif
+            {{--<div class="cart-2">--}}
+                {{--<div class="row">--}}
+                    {{--<div class="col s5">--}}
+                        {{--<h5>Image</h5>--}}
+                    {{--</div>--}}
+                    {{--<div class="col s7">--}}
+                        {{--<img src="img/wishlist2.png" alt="">--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--<div class="row">--}}
+                    {{--<div class="col s5">--}}
+                        {{--<h5>Name</h5>--}}
+                    {{--</div>--}}
+                    {{--<div class="col s7">--}}
+                        {{--<h5><a href="">Fashion Men's</a></h5>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--<div class="row">--}}
+                    {{--<div class="col s5">--}}
+                        {{--<h5>Stock Status</h5>--}}
+                    {{--</div>--}}
+                    {{--<div class="col s7">--}}
+                        {{--<h5>In Stock</h5>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--<div class="row">--}}
+                    {{--<div class="col s5">--}}
+                        {{--<h5>Price</h5>--}}
+                    {{--</div>--}}
+                    {{--<div class="col s7">--}}
+                        {{--<h5>$20</h5>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--<div class="row">--}}
+                    {{--<div class="col s5">--}}
+                        {{--<h5>Action</h5>--}}
+                    {{--</div>--}}
+                    {{--<div class="col s7">--}}
+                        {{--<h5><i class="fa fa-trash"></i></h5>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--<div class="row">--}}
+                    {{--<div class="col 12">--}}
+                        {{--<button class="btn button-default">SEND TO CART</button>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        </div>
+    </div>
+</div>
+<!-- end wishlist -->
 
 <!-- loader -->
 <div id="fakeLoader"></div>

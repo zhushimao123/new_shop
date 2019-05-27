@@ -35,7 +35,7 @@
             <a href="/"><i class="fa fa-home"></i></a>
         </div>
         <div class="col s2">
-            <a href="wishlist.html"><i class="fa fa-heart"></i></a>
+            <a href="/wish"><i class="fa fa-heart"></i></a>
         </div>
         <div class="col s4">
             <div class="bar-center">
@@ -113,7 +113,7 @@
                 return false;
             }
             $.ajax({
-                url:"http://www.newshop.com/logindo",
+                url:"/logindo",
                 data:{user_name:user_name,user_pwd:user_pwd},
                 dataType:'json',
                 type:'post',
@@ -124,7 +124,7 @@
                         alert(res.msg);
                     }else{
                         alert('登录成功');
-                        location.href="http://www.newshop.com/";
+                        location.href="/";
                     }
                 }
             });

@@ -33,7 +33,7 @@
             <a href="/"><i class="fa fa-home"></i></a>
         </div>
         <div class="col s2">
-            <a href="wishlist.html"><i class="fa fa-heart"></i></a>
+            <a href="/wish"><i class="fa fa-heart"></i></a>
         </div>
         <div class="col s4">
             <div class="bar-center">
@@ -117,7 +117,7 @@
                 return false;
             }
             $.ajax({
-                url:"http://www.newshop.com/regdo",
+                url:"/regdo",
                 data:{user_name:user_name,user_email:user_email,user_pwd:user_pwd},
                 dataType:'json',
                 type:'post',
@@ -128,7 +128,7 @@
                         alert(res.msg);
                     }else{
                         alert('注册成功');
-                        location.href="http://www.newshop.com/login";
+                        location.href="/login";
                     }
                 }
             });

@@ -23,10 +23,13 @@ Route::get('/logout', 'user\UserController@logout');
 //商品详情
 Route::get('/detil', 'Goods\GoodsdetialController@detial');
 Route::post('/cart', 'Goods\GoodsdetialController@cart');
-Route::get('/cartdet', 'Cart\CartController@cartdet')->middleware('checkLogin');
+Route::get('/cartdet', 'Cart\CartController@cartdet');
 
 
-
+//收藏列表
+Route::get('/wish', 'Collection\CollectionController@colle_list');
+//点击收藏
+Route::get('/getConlle/{id}', 'Collection\CollectionController@getConlle');
 
 //联系我们
 Route::get('/contact', 'contact\ContactController@contact')->middleware('checkLogin');
@@ -41,15 +44,15 @@ Route::get('/order', 'order\OrderController@order')->middleware('checkLogin');
 
 
 //确认结算
-Route::get('/orderdo', 'order\OrderController@orderdo')->middleware('checkLogin');
+Route::get('/orderdo', 'order\OrderController@orderdo');
 //订单页面
-Route::get('/orhtml', 'order\OrderController@orhtml')->middleware('checkLogin');
+Route::get('/orhtml', 'order\OrderController@orhtml');
 //支付宝支付
-Route::get('/alipay', 'order\OrderController@alipay')->middleware('checkLogin');
+Route::get('/alipay', 'order\OrderController@alipay');
 //支付宝支付成功回调
-Route::get('/succuess', 'order\OrderController@succuess')->middleware('checkLogin');
+Route::get('/succuess', 'order\OrderController@succuess');
 //支付宝支付成功异步回调
-Route::post('/alipayNotify', 'order\OrderController@alipayNotify')->middleware('checkLogin');
+Route::post('/alipayNotify', 'order\OrderController@alipayNotify');
 Route::get('/succuess', 'order\OrderController@succuess');
 //支付宝支付成功异步回调
 Route::post('/alipayNotify', 'order\OrderController@alipayNotify');

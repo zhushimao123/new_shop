@@ -17,11 +17,6 @@ class UserController extends Controller
     {
         $session_name=Session::get('user_name');
         $data=cartmodel::where(['cart_status'=>1])->select()->paginate(6);
-        $count=0;
-        foreach ($data as $k => $v){
-            $price=$v->buy_number*$v->goods_price;
-            $count=$count+=$price;
-        }
         $a=$data->count();
         return view('user/register',['session_name'=>$session_name,'a'=>$a]);
     }
@@ -63,11 +58,6 @@ class UserController extends Controller
     {
         $session_name=Session::get('user_name');
         $data=cartmodel::where(['cart_status'=>1])->select()->paginate(6);
-        $count=0;
-        foreach ($data as $k => $v){
-            $price=$v->buy_number*$v->goods_price;
-            $count=$count+=$price;
-        }
         $a=$data->count();
         return view('user/login',['session_name'=>$session_name,'a'=>$a]);
     }
@@ -102,10 +92,11 @@ class UserController extends Controller
     //退出
     public function logout(Request $request)
     {
-        $request->session()->forget('user_name');
+        $request->session()->forget(['user_id','user_name']);
         $s=Session::get('user_name');
-        if(!$s){
-            return redirect()->to("http://www.newshop.com");
+        $s1=Session::get('user_id');
+        if(!$s&&!$s1){
+            return redirect()->to("/");
         }
     }
 }

@@ -11,7 +11,6 @@
             <h2>John Doe</h2>
         </li>
             <li><a href="/contact"><i class="fa fa-user"></i>About Us</a></li>
-            {{--<li><a href="/contact"><i class="fa fa-envelope-o"></i>Contact Us</a></li>--}}
             <li><a href="/login"><i class="fa fa-sign-in"></i>Login</a></li>
             <li><a href="/register"><i class="fa fa-user-plus"></i>Register</a></li>
         @else
@@ -33,7 +32,7 @@
             <a href="/"><i class="fa fa-home"></i></a>
         </div>
         <div class="col s2">
-            <a href="wishlist.html"><i class="fa fa-heart"></i></a>
+            <a href="/wish"><i class="fa fa-heart"></i></a>
         </div>
         <div class="col s4">
             <div class="bar-center">
@@ -49,10 +48,8 @@
         </div>
     </div>
 </div>
+
 <!-- end navbar bottom -->
-
-
-
 
 <!-- slider -->
 <div class="slider">
@@ -154,8 +151,8 @@
         <div class="row">
             @foreach($new_shop as $key=>$val)
                 <div class="col s6">
-                    <div class="">
-                        <a href='detil?goods_id={{$val->goods_id}}'><img src="{{'/uploads/goodsimg/'.$val->goods_img  }}" alt="" height="280"></a>
+                    <div class="content">
+                        <a href='detil?goods_id={{$val->goods_id}}'><img src="{{'/uploads/goodsimg/'.$val->goods_img  }}" alt="" height="280" width="280"></a>
                         <h6><a href='detil?goods_id={{$val->goods_id}}'>{{$val-> goods_name}}</a></h6>
                         <div class="price">
                             <b> ${{$val -> goods_price}}</b> <span>|${{$val -> goods_bzprice}}</span>&nbsp;&nbsp;&nbsp;&nbsp;<b>❤</b>
@@ -192,7 +189,7 @@
         <div class="row">
             @foreach($shop as $k=>$v)
             <div class="col s6"  >
-                <div class="">
+                <div class="content">
                     <a href='detil?goods_id={{$v ->goods_id}}'><img src="{{'/uploads/goodsimg/'.$v ->goods_img  }}" alt="" height="280"></a>
                     <h6> <a href='detil?goods_id={{$v->goods_id}}'>{{$v-> goods_name}}</a></h6>
                     <div class="price">

@@ -32,7 +32,7 @@
             <a href="/"><i class="fa fa-home"></i></a>
         </div>
         <div class="col s2">
-            <a href="wishlist.html"><i class="fa fa-heart"></i></a>
+            <a href="/wish"><i class="fa fa-heart"></i></a>
         </div>
         <div class="col s4">
             <div class="bar-center">
@@ -59,6 +59,7 @@
             <h5>{{$data['goods_name']}}</h5>
             <div class="price">${{$data['goods_price']}} <span>${{$data['goods_bzprice']}}</span></div>
             <button type="button" class="btn button-default" id="btu" goods_id="{{$data->goods_id}}">加入购物车</button>
+            <button type="button" class="btn button-default" id="shc" goods_id="{{$data->goods_id}}">点击加入收藏</button>
         </div>
     </div>
 
@@ -85,8 +86,22 @@
                     }
                 })
             })
-
+            //收藏
+            $('#shc').click(function(){
+                var id = $(this).attr('goods_id');
+                $.ajax({
+                    url:"/getConlle/"+id,
+                    dataType:'json',
+                    method:'get',
+                    success:function(res){
+                        alert(res.msg);
+                        if(res.err==3){
+                            location.href="/login";
+                        }
+                    }
+                })
+            })
         })
-            </script>
+    </script>
 </body>
 </html>

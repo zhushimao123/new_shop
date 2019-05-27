@@ -19,22 +19,17 @@ class OrderController extends Controller
 
     public function order()
     {
-        $session_name=Session::get('user_name');
-<<<<<<< HEAD
 
+        $session_name=Session::get('user_name');
         $goodsinfo = DB::table('shop_cart')->where(['user_id'=>Session::get('user_id')])->get();
-       return view('order.order',['goodsinfo'=>$goodsinfo,'session_name'=>$session_name]);
-=======
         $data=cartmodel::where(['cart_status'=>1])->select()->paginate(6);
         $count=0;
         foreach ($data as $k => $v){
-            $price=$v->buy_number*$v->goods_price;
-            $count=$count+=$price;
+            $price= $v-> buy_number * $v ->goods_price;
+            $count= $count += $price;
         }
         $a=$data->count();
-        $goodsinfo = DB::table('shop_cart')->where(['user_id'=>1])->get();
        return view('order.order',['goodsinfo'=>$goodsinfo,'session_name'=>$session_name,'a'=>$a]);
->>>>>>> 3bd5b49886da64e9c4370b7dbc986090da28fb06
     }
     //确认结算
     public function orderdo()
@@ -166,25 +161,40 @@ class OrderController extends Controller
     //支付宝支付
     public function getalipay($oid)
     {
+//        echo "<pre>";print_r($_SERVER);echo "<pre>";die;
+        $str2 = json_encode($_SERVER['HTTP_USER_AGENT']);
+        $str = 'Windows';
+       if(strpos($str2,$str) != false){
+          //扫码支付
+            $method = 'alipay.trade.page.pay';
+            $prouct_code = 'FAST_INSTANT_TRADE_PAY';
+            $url = 'https://openapi.alipaydev.com/gateway.do';
+       }else{
+           //h5支付
+            $method = 'alipay.trade.wap.pay';
+            $prouct_code = 'QUICK_WAP_WAY';
+            $url = 'https://openapi.alipaydev.com/gateway.do';
+       }
         $res = DB::table('shop_order')->where(['order_no'=>$_GET['oid']])->first();
         //业务参数
         $bizcont = [
             'subject' => '月七',//交易标题/订单标题/订单关键
             'out_trade_no'=>$oid, //订单号
             'total_amount'      => $res->order_amount / 100, //支付金额
-            'product_code'      => 'QUICK_WAP_WAY', //固定值
+            'product_code'      => $prouct_code //固定值
         ];
+
         //公共参数
         $data = [
             'app_id'   => '2016092700608889',
-            'method'   => 'alipay.trade.wap.pay',
+            'method'   => $method,
             'format'   => 'JSON',
             'charset'   => 'utf-8',
             'sign_type'   => 'RSA2',
             'timestamp'   => date('Y-m-d H:i:s'),
             'version'   => '1.0',
             'notify_url'   => 'http://them.mneddx.com/alipayNotify',       //异步通知地址
-            'return_url'   => 'http://them.mneddx.com/succuess',      // 同步通知地址
+            'return_url'   => 'http://vm.them.com/succuess',      // 同步通知地址
             'biz_content'   => json_encode($bizcont),
         ];
         //拼接参数
@@ -212,8 +222,9 @@ class OrderController extends Controller
         }
         $trim2 = rtrim($a,'&');
 //        var_dump($trim2);die;
-        $url = 'https://openapi.alipaydev.com/gateway.do'.$trim2;
-        header('refresh:2;url='.$url);
+        $url2 = $url.$trim2;
+        header('refresh:2;url='.$url2);
+
     }
     //支付成功回调
     public function  succuess()

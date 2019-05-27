@@ -31,23 +31,11 @@ class weixincontroller extends Controller
         $url = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token.'&openid='.$openid.'&lang=zh_CN';
         $user_info = json_decode(file_get_contents($url),true);
 
-        // echo '<pre>';print_r($user_info);echo '</pre>';
-
-        //echo '<pre>';print_r($user_info);echo '</pre>';
-
 
         $openid=$user_info['openid'];
         $wx_id='oYL3b5krtrmqxlwXs0A_7cv4vaJg';
         $res= info::where(['openid'=>$user_info['openid']])->first();
-        // echo $res;exit;
         if($res){
-//            echo '
-//<xml><ToUserName><![CDATA['.$openid.']]></ToUserName>
-//<FromUserName><![CDATA['.$wx_id.']]></FromUserName>
-//<CreateTime>'.time().'</CreateTime>
-//<MsgType><![CDATA[text]]></MsgType>
-//<Content><![CDATA['.'欢迎回来'.$user_info['nickname'].']]></Content>
-//</xml>';
             header('Refresh:3;url=http://them.mneddx.com');
             echo '欢迎回来';
 
@@ -63,13 +51,6 @@ class weixincontroller extends Controller
                 'head'=>$user_info['headimgurl']
             ];
             info::insert($info);
-//            echo '
-//<xml><ToUserName><![CDATA['.$openid.']]></ToUserName>
-//<FromUserName><![CDATA['.$wx_id.']]></FromUserName>
-//<CreateTime>'.time().'</CreateTime>
-//<MsgType><![CDATA[text]]></MsgType>
-//<Content><![CDATA['.'欢迎关注'.$user_info['nickname'].']]></Content>
-//</xml>';
             header('Refresh:3;url=http://them.mneddx.com');
             echo '欢迎关注';
 

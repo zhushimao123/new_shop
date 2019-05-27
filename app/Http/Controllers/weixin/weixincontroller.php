@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\model\WxUser;
 use Illuminate\Support\Facades\Session;
+use App\model\User;
 class weixincontroller extends Controller
 {
     public function code(){

@@ -15,7 +15,6 @@ class CheckLogin
      */
     public function handle($request, Closure $next)
     {
-        //echo Session::get('user_name');die;
         if(Session::get('user_name')==null&&Session::get('user_id')==null){
             return redirect()->to("/login");
         }

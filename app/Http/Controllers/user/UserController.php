@@ -166,9 +166,9 @@ class UserController extends Controller
     {
         $request->session()->forget(['user_id','user_name']);
         $s=Session::get('user_name');
-        $s1=Session::get('user_id');
-        if(!$s&&!$s1){
-            return redirect()->to("/");
+        if(!$s){
+            header('refresh:1;url=http://them.mneddx.com');
+            return redirect()->to("http://them.mneddx.com");
         }
     }
 }

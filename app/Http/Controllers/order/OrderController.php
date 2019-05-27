@@ -20,14 +20,15 @@ class OrderController extends Controller
     public function order()
     {
         $session_name=Session::get('user_name');
+
         $data=cartmodel::where(['cart_status'=>1])->select()->paginate(6);
         $count=0;
         foreach ($data as $k => $v){
-            $price=$v->buy_number*$v->goods_price;
-            $count=$count+=$price;
+            $price= $v-> buy_number * $v ->goods_price;
+            $count= $count += $price;
         }
         $a=$data->count();
-        $goodsinfo = DB::table('shop_cart')->where(['user_id'=>1])->get();
+        $goodsinfo = DB::table('shop_cart')->where(['user_id'=>Session::get('user_id')])->get();
        return view('order.order',['goodsinfo'=>$goodsinfo,'session_name'=>$session_name,'a'=>$a]);
     }
     //确认结算
@@ -42,7 +43,7 @@ class OrderController extends Controller
            die(json_encode($response,JSON_UNESCAPED_UNICODE));
        }
         $goods_id = explode(',',$_GET['goods_id']);
-        $shopInfo = cartmodel::where(['user_id'=>1])->get();
+        $shopInfo = cartmodel::where(['user_id'=>Session::get('user_id')])->get();
         $countprice = 0;
         foreach ($shopInfo as $k=>$v)
         {
@@ -52,7 +53,7 @@ class OrderController extends Controller
         $orderInfo['order_amount'] = $countprice;
         $orderInfo['order_no'] = $this-> str();
         $orderInfo['pay_type'] = 1; //1 支付宝
-        $orderInfo['user_id'] =1;
+        $orderInfo['user_id'] =Session::get('user_id');
         $orderInfo['create_time']= time();
         $res1 = DB::table('shop_order')->insert($orderInfo);
         if(!$res1){
@@ -64,12 +65,12 @@ class OrderController extends Controller
         }
         $order_id = DB::getPdo()->lastInsertId($res1);
 //        var_dump($order_id);die;
-        $res2 = DB::table('shop_cart')->whereIn('goods_id',$goods_id)->where(['user_id'=>1])->get();
+        $res2 = DB::table('shop_cart')->whereIn('goods_id',$goods_id)->where(['user_id'=>Session::get('user_id')])->get();
         $goodsInfo = json_decode($res2,true);
         foreach ($goodsInfo as $k=> $v)
         {
             $goodsInfo[$k]['order_id'] =$order_id;
-            $goodsInfo[$k]['user_id'] = 1;
+            $goodsInfo[$k]['user_id'] = Session::get('user_id');
             $goodsInfo[$k]['create_time'] =time();
             $goodsInfo[$k]['update_time'] =time();
             $goodsInfo[$k]['goods_img'] = $v['img'];
@@ -89,7 +90,7 @@ class OrderController extends Controller
             die(json_encode($response,JSON_UNESCAPED_UNICODE));
         }
         //清空购物车
-        $res3 = DB::table('shop_cart')->where(['user_id'=> 1])->delete();
+        $res3 = DB::table('shop_cart')->where(['user_id'=>Session::get('user_id')])->delete();
         if(!$res3){
             $response = [
                 'errno'=> 'no',
@@ -160,18 +161,33 @@ class OrderController extends Controller
     //支付宝支付
     public function getalipay($oid)
     {
+//        echo "<pre>";print_r($_SERVER);echo "<pre>";die;
+        $str2 = json_encode($_SERVER['HTTP_USER_AGENT']);
+        $str = 'Windows';
+       if(strpos($str2,$str) != false){
+          //扫码支付
+            $method = 'alipay.trade.page.pay';
+            $prouct_code = 'FAST_INSTANT_TRADE_PAY';
+            $url = 'https://openapi.alipaydev.com/gateway.do';
+       }else{
+           //h5支付
+            $method = 'alipay.trade.wap.pay';
+            $prouct_code = 'QUICK_WAP_WAY';
+            $url = 'https://openapi.alipaydev.com/gateway.do';
+       }
         $res = DB::table('shop_order')->where(['order_no'=>$_GET['oid']])->first();
         //业务参数
         $bizcont = [
             'subject' => '月七',//交易标题/订单标题/订单关键
             'out_trade_no'=>$oid, //订单号
             'total_amount'      => $res->order_amount / 100, //支付金额
-            'product_code'      => 'QUICK_WAP_WAY', //固定值
+            'product_code'      => $prouct_code //固定值
         ];
+
         //公共参数
         $data = [
             'app_id'   => '2016092700608889',
-            'method'   => 'alipay.trade.wap.pay',
+            'method'   => $method,
             'format'   => 'JSON',
             'charset'   => 'utf-8',
             'sign_type'   => 'RSA2',
@@ -206,8 +222,9 @@ class OrderController extends Controller
         }
         $trim2 = rtrim($a,'&');
 //        var_dump($trim2);die;
-        $url = 'https://openapi.alipaydev.com/gateway.do'.$trim2;
-        header('refresh:2;url='.$url);
+        $url2 = $url.$trim2;
+        header('refresh:2;url='.$url2);
+
     }
     //支付成功回调
     public function  succuess()
@@ -225,8 +242,8 @@ class OrderController extends Controller
         file_put_contents('logs/alipay_notify',$log_str,FILE_APPEND);
         echo 'success';
         //TODO 验签 更新订单状态
-//        $pay_time = strtotime($data['gmt_payment']);
-//        DB::table('api_order')->where('order_no',$data['out_trade_no'])->update(['pay_time'=>$pay_time]);
+        $pay_time = strtotime($data['gmt_payment']);
+        DB::table('shop_order')->where(['order_no'=>$data['out_trade_no']])->update(['pay_time'=> $pay_time,'pay_status'=>2]);
 
     }
 
@@ -261,6 +278,16 @@ class OrderController extends Controller
         $res =$this ->postXmlCurl($xml,$this->url,$useCert = false, $second = 30 );
 
         $data =  simplexml_load_string($res);
+        echo 'return_code: '.$data->return_code;echo '<br>';
+        echo 'return_msg: '.$data->return_msg;echo '<br>';
+        echo 'appid: '.$data->appid;echo '<br>';
+        echo 'mch_id: '.$data->mch_id;echo '<br>';
+        echo 'nonce_str: '.$data->nonce_str;echo '<br>';
+        echo 'sign: '.$data->sign;echo '<br>';
+        echo 'result_code: '.$data->result_code;echo '<br>';
+        echo 'prepay_id: '.$data->prepay_id;echo '<br>';
+        echo 'trade_type: '.$data->trade_type;echo '<br>';
+        echo 'code_url: '.$data->code_url;echo '<br>';
         $data = [
             'code_url'  => $data->code_url,
             'oid' => $oid

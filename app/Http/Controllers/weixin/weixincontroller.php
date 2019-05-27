@@ -65,7 +65,7 @@ class weixincontroller extends Controller
             ];
             $uid = User::insertGetid($info);
             //添加到微信用户表
-            $info=[
+            $info1=[
                 'openid'=>$user_info['openid'],
                 'nickname'=>$user_info['nickname'],
                 'sex'=>$user_info['sex'],
@@ -75,7 +75,7 @@ class weixincontroller extends Controller
                 'country'=>$user_info['country'],
                 'head'=>$user_info['headimgurl']
             ];
-            WxUser::insert($info);
+            WxUser::insert($info1);
             $font = "欢迎登录".$user_info['nickname'];
         }
         Session::put(['user_id'=>$uid,'user_name'=>$user_info['nickname']]);
